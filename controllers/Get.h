@@ -1,8 +1,12 @@
 #pragma once
 
 #include <drogon/HttpSimpleController.h>
+#include <filesystem>
+#include <fstream>
+#include <sstream>
 
 using namespace drogon;
+namespace fs = std::filesystem;
 
 class Api : public drogon::HttpSimpleController<Api, true>
 {
