@@ -1,0 +1,6 @@
+/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles/cvedix_backend.dir
+/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles/edit_cache.dir
+/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles/rebuild_cache.dir
+/home/cvedix/Documents/Template/cvedix_backend/build/test/CMakeFiles/cvedix_backend_test.dir
+/home/cvedix/Documents/Template/cvedix_backend/build/test/CMakeFiles/edit_cache.dir
+/home/cvedix/Documents/Template/cvedix_backend/build/test/CMakeFiles/rebuild_cache.dir

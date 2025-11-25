@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/cvedix_backend.dir/main.cc.o CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o -o cvedix_backend  /usr/local/lib/libdrogon.a /usr/local/lib/libtrantor.a -lpthread -ldl /usr/lib/x86_64-linux-gnu/libjsoncpp.so /usr/lib/x86_64-linux-gnu/libuuid.so /usr/lib/x86_64-linux-gnu/libz.so 
