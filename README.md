@@ -1,4 +1,20 @@
-                        # 🚀 Drogon Framework - Hướng dẫn sử dụng
+                        # 🚀 CVEdix lego
+
+
+Một giải pháp nền tảng low-code giúp kết nối công nghệ AI (như các thuật toán học sâu) với các ứng dụng thực tế trong công nghiệp. Nền tảng này giúp đơn giản hóa việc tích hợp các hệ thống như Robot Operating System (ROS), cho phép người dùng thiết kế quy trình làm việc bằng ngôn ngữ lập trình dạng khối, giảm thiểu nhu cầu lập trình thủ công.
+
+Một số đặc điểm nổi bật của CvedixLego:
+
+- Giao diện kéo-thả lập trình hóa các quy trình xử lý.
+- Kết nối được với nhiều thiết bị ngoại vi như Modbus/TCP, Arduino I/O, cổng Serial, camera IP, webcam...
+- Lưu trữ, chú thích dữ liệu phục vụ huấn luyện AI.
+- Hỗ trợ huấn luyện mô hình AI bằng cả CPU/GPU.
+- Truyền dữ liệu tới các hệ thống khác thông qua MQTT hoặc REST API, hoặc phát trực tuyến bằng RTSP.
+- Tạo giao diện người dùng cơ bản với các thành phần như nút bấm, hình ảnh, chữ led.
+- Thiết kế các quy trình xử lý song song hoặc tuần tự.
+- Tương thích đa hệ điều hành, dễ dàng sử dụng cho nhiều đối tượng.
+
+Tóm lại, CvedixLego là nền tảng công nghệ cốt lõi giúp doanh nghiệp và ngành công nghiệp triển khai, ứng dụng AI vào tự động hóa, nhận diện và điều khiển thiết bị một cách dễ dàng và hiệu quả.
 
 ---
 ## 🎯 Tạo Project
@@ -446,5 +462,6 @@ curl -X POST http://localhost:5555/api/upload \
 ```
 
 ---
+
 
 
