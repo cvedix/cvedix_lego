@@ -1,5 +1,4 @@
-                        # 🚀 CVEdix lego
-
+# Cvedix Lego
 
 Một giải pháp nền tảng low-code giúp kết nối công nghệ AI (như các thuật toán học sâu) với các ứng dụng thực tế trong công nghiệp. Nền tảng này giúp đơn giản hóa việc tích hợp các hệ thống như Robot Operating System (ROS), cho phép người dùng thiết kế quy trình làm việc bằng ngôn ngữ lập trình dạng khối, giảm thiểu nhu cầu lập trình thủ công.
 
@@ -462,6 +461,7 @@ curl -X POST http://localhost:5555/api/upload \
 ```
 
 ---
+
 
 
 
