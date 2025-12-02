@@ -83,30 +83,62 @@ CMakeFiles/cvedix_backend.dir/main.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/main.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/main.cc -o CMakeFiles/cvedix_backend.dir/main.cc.s
 
-CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
-CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o: /home/cvedix/Documents/Template/cvedix_backend/controllers/Get.cc
-CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o -MF CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o.d -o CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/controllers/Get.cc
+CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
+CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o: /home/cvedix/Documents/Template/cvedix_backend/controllers/CheckFirmwareController.cc
+CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o -MF CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o.d -o CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/controllers/CheckFirmwareController.cc
 
-CMakeFiles/cvedix_backend.dir/controllers/Get.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cvedix_backend.dir/controllers/Get.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cvedix/Documents/Template/cvedix_backend/controllers/Get.cc > CMakeFiles/cvedix_backend.dir/controllers/Get.cc.i
+CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cvedix/Documents/Template/cvedix_backend/controllers/CheckFirmwareController.cc > CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.i
 
-CMakeFiles/cvedix_backend.dir/controllers/Get.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/Get.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/Get.cc -o CMakeFiles/cvedix_backend.dir/controllers/Get.cc.s
+CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/CheckFirmwareController.cc -o CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.s
+
+CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
+CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o: /home/cvedix/Documents/Template/cvedix_backend/controllers/HelloController.cc
+CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o -MF CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o.d -o CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/controllers/HelloController.cc
+
+CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cvedix/Documents/Template/cvedix_backend/controllers/HelloController.cc > CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.i
+
+CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/HelloController.cc -o CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.s
+
+CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
+CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o: /home/cvedix/Documents/Template/cvedix_backend/controllers/UploadVideoController.cc
+CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o -MF CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o.d -o CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/controllers/UploadVideoController.cc
+
+CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cvedix/Documents/Template/cvedix_backend/controllers/UploadVideoController.cc > CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.i
+
+CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/UploadVideoController.cc -o CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.s
 
 # Object files for target cvedix_backend
 cvedix_backend_OBJECTS = \
 "CMakeFiles/cvedix_backend.dir/main.cc.o" \
-"CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o"
+"CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o" \
+"CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o" \
+"CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o"
 
 # External object files for target cvedix_backend
 cvedix_backend_EXTERNAL_OBJECTS =
 
 cvedix_backend: CMakeFiles/cvedix_backend.dir/main.cc.o
-cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o
+cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o
+cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o
+cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o
 cvedix_backend: CMakeFiles/cvedix_backend.dir/build.make
 cvedix_backend: /usr/local/lib/libdrogon.a
 cvedix_backend: /usr/local/lib/libtrantor.a
@@ -114,7 +146,7 @@ cvedix_backend: /usr/lib/x86_64-linux-gnu/libjsoncpp.so
 cvedix_backend: /usr/lib/x86_64-linux-gnu/libuuid.so
 cvedix_backend: /usr/lib/x86_64-linux-gnu/libz.so
 cvedix_backend: CMakeFiles/cvedix_backend.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable cvedix_backend"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable cvedix_backend"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cvedix_backend.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/cvedix/Documents/Template/cvedix_backend/controllers/Get.cc" "CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o.d"
+  "/home/cvedix/Documents/Template/cvedix_backend/controllers/CheckFirmwareController.cc" "CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o.d"
+  "/home/cvedix/Documents/Template/cvedix_backend/controllers/HelloController.cc" "CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o.d"
+  "/home/cvedix/Documents/Template/cvedix_backend/controllers/UploadVideoController.cc" "CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o.d"
   "/home/cvedix/Documents/Template/cvedix_backend/main.cc" "CMakeFiles/cvedix_backend.dir/main.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/main.cc.o.d"
   )
 

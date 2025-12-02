@@ -300,7 +300,4 @@ CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o: \
  /usr/local/include/drogon/nosql/RedisResult.h \
  /usr/local/include/drogon/nosql/RedisException.h \
  /usr/local/include/drogon/nosql/RedisSubscriber.h \
- /usr/local/include/trantor/net/Resolver.h /usr/include/c++/13/fstream \
- /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
- /usr/include/c++/13/bits/fstream.tcc
+ /usr/local/include/trantor/net/Resolver.h

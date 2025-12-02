@@ -142,29 +142,77 @@ cvedix_backend_test/fast:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/cvedix_backend_test.dir/build.make test/CMakeFiles/cvedix_backend_test.dir/build
 .PHONY : cvedix_backend_test/fast
 
-controllers/Get.o: controllers/Get.cc.o
-.PHONY : controllers/Get.o
+controllers/CheckFirmwareController.o: controllers/CheckFirmwareController.cc.o
+.PHONY : controllers/CheckFirmwareController.o
 
 # target to build an object file
-controllers/Get.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o
-.PHONY : controllers/Get.cc.o
+controllers/CheckFirmwareController.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o
+.PHONY : controllers/CheckFirmwareController.cc.o
 
-controllers/Get.i: controllers/Get.cc.i
-.PHONY : controllers/Get.i
+controllers/CheckFirmwareController.i: controllers/CheckFirmwareController.cc.i
+.PHONY : controllers/CheckFirmwareController.i
 
 # target to preprocess a source file
-controllers/Get.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/Get.cc.i
-.PHONY : controllers/Get.cc.i
+controllers/CheckFirmwareController.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.i
+.PHONY : controllers/CheckFirmwareController.cc.i
 
-controllers/Get.s: controllers/Get.cc.s
-.PHONY : controllers/Get.s
+controllers/CheckFirmwareController.s: controllers/CheckFirmwareController.cc.s
+.PHONY : controllers/CheckFirmwareController.s
 
 # target to generate assembly for a file
-controllers/Get.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/Get.cc.s
-.PHONY : controllers/Get.cc.s
+controllers/CheckFirmwareController.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.s
+.PHONY : controllers/CheckFirmwareController.cc.s
+
+controllers/HelloController.o: controllers/HelloController.cc.o
+.PHONY : controllers/HelloController.o
+
+# target to build an object file
+controllers/HelloController.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.o
+.PHONY : controllers/HelloController.cc.o
+
+controllers/HelloController.i: controllers/HelloController.cc.i
+.PHONY : controllers/HelloController.i
+
+# target to preprocess a source file
+controllers/HelloController.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.i
+.PHONY : controllers/HelloController.cc.i
+
+controllers/HelloController.s: controllers/HelloController.cc.s
+.PHONY : controllers/HelloController.s
+
+# target to generate assembly for a file
+controllers/HelloController.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/HelloController.cc.s
+.PHONY : controllers/HelloController.cc.s
+
+controllers/UploadVideoController.o: controllers/UploadVideoController.cc.o
+.PHONY : controllers/UploadVideoController.o
+
+# target to build an object file
+controllers/UploadVideoController.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.o
+.PHONY : controllers/UploadVideoController.cc.o
+
+controllers/UploadVideoController.i: controllers/UploadVideoController.cc.i
+.PHONY : controllers/UploadVideoController.i
+
+# target to preprocess a source file
+controllers/UploadVideoController.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.i
+.PHONY : controllers/UploadVideoController.cc.i
+
+controllers/UploadVideoController.s: controllers/UploadVideoController.cc.s
+.PHONY : controllers/UploadVideoController.s
+
+# target to generate assembly for a file
+controllers/UploadVideoController.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/UploadVideoController.cc.s
+.PHONY : controllers/UploadVideoController.cc.s
 
 main.o: main.cc.o
 .PHONY : main.o
@@ -200,9 +248,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... cvedix_backend"
 	@echo "... cvedix_backend_test"
-	@echo "... controllers/Get.o"
-	@echo "... controllers/Get.i"
-	@echo "... controllers/Get.s"
+	@echo "... controllers/CheckFirmwareController.o"
+	@echo "... controllers/CheckFirmwareController.i"
+	@echo "... controllers/CheckFirmwareController.s"
+	@echo "... controllers/HelloController.o"
+	@echo "... controllers/HelloController.i"
+	@echo "... controllers/HelloController.s"
+	@echo "... controllers/UploadVideoController.o"
+	@echo "... controllers/UploadVideoController.i"
+	@echo "... controllers/UploadVideoController.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
