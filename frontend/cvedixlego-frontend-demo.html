@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CvedixLego - Visual CV Pipeline Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
+            background: #1a1d24;
+            color: #e4e6eb;
+        }
+
+        /* Top Toolbar */
+        .toolbar {
+            background: #25282f;
+            border-bottom: 1px solid #3a3d44;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .toolbar-left, .toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-right: 20px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #3a3d44;
+            color: #e4e6eb;
+        }
+
+        .btn-secondary:hover {
+            background: #4a4d54;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: #3a3d44;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #6b7280;
+        }
+
+        .status-dot.active {
+            background: #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #25282f;
+            border-right: 1px solid #3a3d44;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar-section {
+            padding: 20px;
+            border-bottom: 1px solid #3a3d44;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .node-item {
+            background: #1a1d24;
+            border: 1px solid #3a3d44;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            cursor: grab;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .node-item:hover {
+            border-color: #667eea;
+            background: #252832;
+            transform: translateX(2px);
+        }
+
+        .node-item:active {
+            cursor: grabbing;
+        }
+
+        .node-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .node-icon.source { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .node-icon.processing { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .node-icon.output { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+
+        .node-info {
+            flex: 1;
+        }
+
+        .node-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .node-description {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        /* Canvas */
+        .canvas-container {
+            flex: 1;
+            position: relative;
+            background: 
+                linear-gradient(90deg, #2a2d35 1px, transparent 1px),
+                linear-gradient(180deg, #2a2d35 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 0;
+            overflow: hidden;
+        }
+
+        .canvas {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: grab;
+        }
+
+        .canvas.grabbing {
+            cursor: grabbing;
+        }
+
+        svg.connections {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .connection-line {
+            fill: none;
+            stroke: #667eea;
+            stroke-width: 2;
+            opacity: 0.6;
+        }
+
+        .connection-line.active {
+            stroke: #10b981;
+            opacity: 0.8;
+        }
+
+        /* Node on Canvas */
+        .canvas-node {
+            position: absolute;
+            background: #25282f;
+            border: 2px solid #3a3d44;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            min-width: 200px;
+            cursor: move;
+            z-index: 10;
+        }
+
+        .canvas-node.selected {
+            border-color: #667eea;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .canvas-node.source { border-left: 4px solid #10b981; }
+        .canvas-node.processing { border-left: 4px solid #667eea; }
+        .canvas-node.output { border-left: 4px solid #f59e0b; }
+
+        .node-header {
+            padding: 12px 14px;
+            border-bottom: 1px solid #3a3d44;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .node-header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .node-type-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .node-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .node-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .node-action-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            color: #9ca3af;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .node-action-btn:hover {
+            background: #3a3d44;
+            color: #e4e6eb;
+        }
+
+        .node-body {
+            padding: 14px;
+        }
+
+        .node-param {
+            font-size: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            color: #9ca3af;
+        }
+
+        .node-param-value {
+            color: #e4e6eb;
+            font-weight: 500;
+        }
+
+        .node-ports {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 14px 10px;
+        }
+
+        .port {
+            width: 12px;
+            height: 12px;
+            background: #3a3d44;
+            border: 2px solid #25282f;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .port:hover {
+            transform: scale(1.3);
+        }
+
+        .port.input {
+            background: #667eea;
+        }
+
+        .port.output {
+            background: #10b981;
+        }
+
+        .port.connecting {
+            background: #f59e0b;
+            animation: portPulse 0.6s infinite;
+        }
+
+        @keyframes portPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+        }
+
+        /* Configuration Panel */
+        .config-panel {
+            width: 320px;
+            background: #25282f;
+            border-left: 1px solid #3a3d44;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .config-header {
+            padding: 20px;
+            border-bottom: 1px solid #3a3d44;
+        }
+
+        .config-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .config-subtitle {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .config-section {
+            padding: 20px;
+            border-bottom: 1px solid #3a3d44;
+        }
+
+        .config-label {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .config-input {
+            width: 100%;
+            padding: 10px 12px;
+            background: #1a1d24;
+            border: 1px solid #3a3d44;
+            border-radius: 6px;
+            color: #e4e6eb;
+            font-size: 14px;
+            margin-bottom: 16px;
+            transition: all 0.2s;
+        }
+
+        .config-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .config-select {
+            width: 100%;
+            padding: 10px 12px;
+            background: #1a1d24;
+            border: 1px solid #3a3d44;
+            border-radius: 6px;
+            color: #e4e6eb;
+            font-size: 14px;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+
+        .config-help {
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: -12px;
+            margin-bottom: 16px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #6b7280;
+            pointer-events: none;
+        }
+
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+            opacity: 0.3;
+        }
+
+        .empty-state-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .empty-state-text {
+            font-size: 14px;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1d24;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3a3d44;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4a4d54;
+        }
+
+        /* Context Menu */
+        .context-menu {
+            position: fixed;
+            background: #25282f;
+            border: 1px solid #3a3d44;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            z-index: 10000;
+            min-width: 160px;
+            display: none;
+        }
+
+        .context-menu.show {
+            display: block;
+        }
+
+        .context-menu-item {
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .context-menu-item:hover {
+            background: #3a3d44;
+        }
+
+        .context-menu-divider {
+            height: 1px;
+            background: #3a3d44;
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="toolbar-left">
+            <div class="logo">🧩 CvedixLego</div>
+            <button class="btn btn-secondary" onclick="app.newPipeline()">
+                <span>📄</span> New
+            </button>
+            <button class="btn btn-secondary" onclick="app.savePipeline()">
+                <span>💾</span> Save
+            </button>
+            <button class="btn btn-secondary" onclick="app.loadPipeline()">
+                <span>📂</span> Load
+            </button>
+        </div>
+        <div class="toolbar-right">
+            <div class="status-indicator">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="statusText">Idle</span>
+            </div>
+            <button class="btn btn-success" id="runBtn" onclick="app.runPipeline()">
+                <span>▶️</span> Run
+            </button>
+            <button class="btn btn-danger" id="stopBtn" onclick="app.stopPipeline()" style="display:none;">
+                <span>⏹️</span> Stop
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Source Nodes -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">📹 Source Nodes</div>
+                <div class="node-item" draggable="true" data-type="rtsp-camera" data-category="source">
+                    <div class="node-icon source">📡</div>
+                    <div class="node-info">
+                        <div class="node-name">RTSP Camera</div>
+                        <div class="node-description">Connect to IP camera stream</div>
+                    </div>
+                </div>
+                <div class="node-item" draggable="true" data-type="usb-camera" data-category="source">
+                    <div class="node-icon source">📷</div>
+                    <div class="node-info">
+                        <div class="node-name">USB Camera</div>
+                        <div class="node-description">Local webcam input</div>
+                    </div>
+                </div>
+                <div class="node-item" draggable="true" data-type="video-file" data-category="source">
+                    <div class="node-icon source">🎬</div>
+                    <div class="node-info">
+                        <div class="node-name">Video File</div>
+                        <div class="node-description">Load video from disk</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Processing Nodes -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">🤖 AI Processing</div>
+                <div class="node-item" draggable="true" data-type="face-detection" data-category="processing">
+                    <div class="node-icon processing">😊</div>
+                    <div class="node-info">
+                        <div class="node-name">Face Detection</div>
+                        <div class="node-description">Detect faces in frames</div>
+                    </div>
+                </div>
+                <div class="node-item" draggable="true" data-type="object-detection" data-category="processing">
+                    <div class="node-icon processing">🎯</div>
+                    <div class="node-info">
+                        <div class="node-name">Object Detection</div>
+                        <div class="node-description">YOLO-based detection</div>
+                    </div>
+                </div>
+                <div class="node-item" draggable="true" data-type="vehicle-counter" data-category="processing">
+                    <div class="node-icon processing">🚗</div>
+                    <div class="node-info">
+                        <div class="node-name">Vehicle Counter</div>
+                        <div class="node-description">Count vehicles crossing line</div>
+                    </div>
+                </div>
+                <div class="node-item" draggable="true" data-type="object-tracker" data-category="processing">
+                    <div class="node-icon processing">🎪</div>
+                    <div class="node-info">
+                        <div class="node-name">Object Tracker</div>
+                        <div class="node-description">Track detected objects</div>
+                    </div>
+                </div>
+                <div class="node-item" draggable="true" data-type="roi-selector" data-category="processing">
+                    <div class="node-icon processing">⬜</div>
+                    <div class="node-info">
+                        <div class="node-name">ROI Selector</div>
+                        <div class="node-description">Define regions of interest</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output Nodes -->
+            <div class="sidebar-section">
+                <div class="sidebar-title">📤 Output Nodes</div>
+                <div class="node-item" draggable="true" data-type="json-output" data-category="output">
+                    <div class="node-icon output">📋</div>
+                    <div class="node-info">
+                        <div class="node-name">JSON Output</div>
+                        <div class="node-description">Export as JSON data</div>
+                    </div>
+                </div>
+                <div class="node-item" draggable="true" data-type="mqtt-publisher" data-category="output">
+                    <div class="node-icon output">📡</div>
+                    <div class="node-info">
+                        <div class="node-name">MQTT Publisher</div>
+                        <div class="node-description">Send to MQTT broker</div>
+                    </div>
+                </div>
+                <div class="node-item" draggable="true" data-type="rtsp-server" data-category="output">
+                    <div class="node-icon output">📺</div>
+                    <div class="node-info">
+                        <div class="node-name">RTSP Server</div>
+                        <div class="node-description">Stream annotated video</div>
+                    </div>
+                </div>
+                <div class="node-item" draggable="true" data-type="video-recorder" data-category="output">
+                    <div class="node-icon output">💾</div>
+                    <div class="node-info">
+                        <div class="node-name">Video Recorder</div>
+                        <div class="node-description">Save to video file</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Canvas -->
+        <div class="canvas-container">
+            <svg class="connections" id="connections"></svg>
+            <div class="canvas" id="canvas">
+                <div class="empty-state">
+                    <div class="empty-state-icon">🧩</div>
+                    <div class="empty-state-title">Start Building Your Pipeline</div>
+                    <div class="empty-state-text">Drag nodes from the sidebar to begin</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuration Panel -->
+        <div class="config-panel" id="configPanel">
+            <div class="config-header">
+                <div class="config-title">Configuration</div>
+                <div class="config-subtitle">Select a node to configure</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-menu-item" onclick="app.deleteSelectedNode()">🗑️ Delete</div>
+        <div class="context-menu-item" onclick="app.duplicateSelectedNode()">📋 Duplicate</div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item" onclick="app.resetNodeConfig()">🔄 Reset Config</div>
+    </div>
+
+    <script>
+        // Application State
+        const app = {
+            nodes: [],
+            connections: [],
+            selectedNode: null,
+            connecting: false,
+            connectingFrom: null,
+            dragOffset: { x: 0, y: 0 },
+            panOffset: { x: 0, y: 0 },
+            isPanning: false,
+            nodeCounter: 0,
+            isRunning: false,
+
+            // Initialize
+            init() {
+                this.setupDragAndDrop();
+                this.setupCanvasEvents();
+                this.setupContextMenu();
+                console.log('🚀 CvedixLego initialized');
+            },
+
+            // Setup drag and drop for nodes
+            setupDragAndDrop() {
+                const nodeItems = document.querySelectorAll('.node-item');
+                nodeItems.forEach(item => {
+                    item.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('nodeType', item.dataset.type);
+                        e.dataTransfer.setData('nodeCategory', item.dataset.category);
+                    });
+                });
+
+                const canvas = document.getElementById('canvas');
+                canvas.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                });
+
+                canvas.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    const nodeType = e.dataTransfer.getData('nodeType');
+                    const nodeCategory = e.dataTransfer.getData('nodeCategory');
+                    
+                    const canvasRect = canvas.getBoundingClientRect();
+                    const x = e.clientX - canvasRect.left - this.panOffset.x;
+                    const y = e.clientY - canvasRect.top - this.panOffset.y;
+                    
+                    this.createNode(nodeType, nodeCategory, x, y);
+                });
+            },
+
+            // Create a new node
+            createNode(type, category, x, y) {
+                const nodeId = `node-${this.nodeCounter++}`;
+                const nodeConfig = this.getNodeConfig(type);
+
+                const node = {
+                    id: nodeId,
+                    type: type,
+                    category: category,
+                    x: x,
+                    y: y,
+                    config: { ...nodeConfig }
+                };
+
+                this.nodes.push(node);
+                this.renderNode(node);
+                console.log(`✅ Created node: ${type}`);
+            },
+
+            // Get default configuration for node type
+            getNodeConfig(type) {
+                const configs = {
+                    'rtsp-camera': { url: 'rtsp://example.com/stream', fps: 30, resolution: '1920x1080' },
+                    'usb-camera': { deviceId: 0, resolution: '1280x720', fps: 30 },
+                    'video-file': { path: '/path/to/video.mp4', loop: false },
+                    'face-detection': { model: 'DNN', threshold: 0.7, tracking: true },
+                    'object-detection': { model: 'YOLOv8', classes: 'all', confidence: 0.5 },
+                    'vehicle-counter': { countingLine: '100,300,500,300', direction: 'both' },
+                    'object-tracker': { trackerType: 'DeepSORT', maxAge: 30, minHits: 3 },
+                    'roi-selector': { polygons: '[]' },
+                    'json-output': { format: 'standard', destination: 'stdout' },
+                    'mqtt-publisher': { broker: 'mqtt://localhost:1883', topic: 'detections', qos: 1 },
+                    'rtsp-server': { port: 8554, codec: 'h264', bitrate: 2000 },
+                    'video-recorder': { outputPath: '/output/video.mp4', codec: 'h264' }
+                };
+                return configs[type] || {};
+            },
+
+            // Render node on canvas
+            renderNode(node) {
+                const canvas = document.getElementById('canvas');
+                const nodeEl = document.createElement('div');
+                nodeEl.className = `canvas-node ${node.category}`;
+                nodeEl.id = node.id;
+                nodeEl.style.left = `${node.x}px`;
+                nodeEl.style.top = `${node.y}px`;
+
+                const icon = this.getNodeIcon(node.type);
+                const name = this.getNodeName(node.type);
+
+                nodeEl.innerHTML = `
+                    <div class="node-header">
+                        <div class="node-header-left">
+                            <div class="node-type-icon ${node.category}">${icon}</div>
+                            <div class="node-title">${name}</div>
+                        </div>
+                        <div class="node-actions">
+                            <button class="node-action-btn" onclick="app.selectNode('${node.id}')">⚙️</button>
+                            <button class="node-action-btn" onclick="app.deleteNode('${node.id}')">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="node-body">
+                        ${this.renderNodeConfig(node.config)}
+                    </div>
+                    <div class="node-ports">
+                        ${node.category !== 'source' ? '<div class="port input" data-port="input" data-node="' + node.id + '"></div>' : ''}
+                        ${node.category !== 'output' ? '<div class="port output" data-port="output" data-node="' + node.id + '"></div>' : ''}
+                    </div>
+                `;
+
+                canvas.appendChild(nodeEl);
+                this.setupNodeDrag(nodeEl);
+                this.setupPortConnections(nodeEl);
+            },
+
+            // Render node configuration preview
+            renderNodeConfig(config) {
+                let html = '';
+                let count = 0;
+                for (const [key, value] of Object.entries(config)) {
+                    if (count >= 2) break;
+                    html += `<div class="node-param"><span>${key}:</span><span class="node-param-value">${value}</span></div>`;
+                    count++;
+                }
+                return html;
+            },
+
+            // Get node icon
+            getNodeIcon(type) {
+                const icons = {
+                    'rtsp-camera': '📡',
+                    'usb-camera': '📷',
+                    'video-file': '🎬',
+                    'face-detection': '😊',
+                    'object-detection': '🎯',
+                    'vehicle-counter': '🚗',
+                    'object-tracker': '🎪',
+                    'roi-selector': '⬜',
+                    'json-output': '📋',
+                    'mqtt-publisher': '📡',
+                    'rtsp-server': '📺',
+                    'video-recorder': '💾'
+                };
+                return icons[type] || '🔧';
+            },
+
+            // Get node name
+            getNodeName(type) {
+                return type.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            },
+
+            // Setup node dragging
+            setupNodeDrag(nodeEl) {
+                let isDragging = false;
+                let startX, startY;
+
+                nodeEl.addEventListener('mousedown', (e) => {
+                    if (e.target.classList.contains('port') || e.target.classList.contains('node-action-btn')) return;
+                    
+                    isDragging = true;
+                    startX = e.clientX - nodeEl.offsetLeft;
+                    startY = e.clientY - nodeEl.offsetTop;
+                    nodeEl.style.zIndex = 100;
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    
+                    const x = e.clientX - startX;
+                    const y = e.clientY - startY;
+                    nodeEl.style.left = `${x}px`;
+                    nodeEl.style.top = `${y}px`;
+
+                    // Update node position in state
+                    const node = this.nodes.find(n => n.id === nodeEl.id);
+                    if (node) {
+                        node.x = x;
+                        node.y = y;
+                    }
+
+                    this.updateConnections();
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        nodeEl.style.zIndex = 10;
+                    }
+                });
+            },
+
+            // Setup port connections
+            setupPortConnections(nodeEl) {
+                const ports = nodeEl.querySelectorAll('.port');
+                ports.forEach(port => {
+                    port.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.handlePortClick(port);
+                    });
+                });
+            },
+
+            // Handle port click for connections
+            handlePortClick(port) {
+                const nodeId = port.dataset.node;
+                const portType = port.dataset.port;
+
+                if (!this.connecting) {
+                    // Start connection
+                    if (portType === 'output') {
+                        this.connecting = true;
+                        this.connectingFrom = { node: nodeId, port: portType };
+                        port.classList.add('connecting');
+                        console.log('🔗 Starting connection from:', nodeId);
+                    }
+                } else {
+                    // Complete connection
+                    if (portType === 'input' && this.connectingFrom.node !== nodeId) {
+                        this.createConnection(this.connectingFrom.node, nodeId);
+                        
+                        // Reset
+                        document.querySelectorAll('.port.connecting').forEach(p => p.classList.remove('connecting'));
+                        this.connecting = false;
+                        this.connectingFrom = null;
+                    } else {
+                        // Cancel connection
+                        document.querySelectorAll('.port.connecting').forEach(p => p.classList.remove('connecting'));
+                        this.connecting = false;
+                        this.connectingFrom = null;
+                    }
+                }
+            },
+
+            // Create connection between nodes
+            createConnection(fromNode, toNode) {
+                const connection = {
+                    id: `conn-${Date.now()}`,
+                    from: fromNode,
+                    to: toNode
+                };
+                this.connections.push(connection);
+                this.updateConnections();
+                console.log(`✅ Connected: ${fromNode} → ${toNode}`);
+            },
+
+            // Update all connection lines
+            updateConnections() {
+                const svg = document.getElementById('connections');
+                svg.innerHTML = '';
+
+                this.connections.forEach(conn => {
+                    const fromNode = document.getElementById(conn.from);
+                    const toNode = document.getElementById(conn.to);
+                    
+                    if (!fromNode || !toNode) return;
+
+                    const fromPort = fromNode.querySelector('.port.output');
+                    const toPort = toNode.querySelector('.port.input');
+
+                    if (!fromPort || !toPort) return;
+
+                    const fromRect = fromPort.getBoundingClientRect();
+                    const toRect = toPort.getBoundingClientRect();
+                    const svgRect = svg.getBoundingClientRect();
+
+                    const x1 = fromRect.left + fromRect.width / 2 - svgRect.left;
+                    const y1 = fromRect.top + fromRect.height / 2 - svgRect.top;
+                    const x2 = toRect.left + toRect.width / 2 - svgRect.left;
+                    const y2 = toRect.top + toRect.height / 2 - svgRect.top;
+
+                    const path = this.createCurvePath(x1, y1, x2, y2);
+                    
+                    const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    pathEl.setAttribute('d', path);
+                    pathEl.setAttribute('class', 'connection-line');
+                    svg.appendChild(pathEl);
+                });
+            },
+
+            // Create curved path for connections
+            createCurvePath(x1, y1, x2, y2) {
+                const dx = Math.abs(x2 - x1);
+                const dy = Math.abs(y2 - y1);
+                const offset = Math.min(dx / 2, 100);
+                
+                return `M ${x1} ${y1} C ${x1 + offset} ${y1}, ${x2 - offset} ${y2}, ${x2} ${y2}`;
+            },
+
+            // Select node for configuration
+            selectNode(nodeId) {
+                // Deselect previous
+                if (this.selectedNode) {
+                    const prevNode = document.getElementById(this.selectedNode);
+                    if (prevNode) prevNode.classList.remove('selected');
+                }
+
+                // Select new
+                this.selectedNode = nodeId;
+                const nodeEl = document.getElementById(nodeId);
+                if (nodeEl) nodeEl.classList.add('selected');
+
+                // Show configuration
+                this.showNodeConfig(nodeId);
+            },
+
+            // Show node configuration panel
+            showNodeConfig(nodeId) {
+                const node = this.nodes.find(n => n.id === nodeId);
+                if (!node) return;
+
+                const panel = document.getElementById('configPanel');
+                const name = this.getNodeName(node.type);
+
+                let html = `
+                    <div class="config-header">
+                        <div class="config-title">${name}</div>
+                        <div class="config-subtitle">${node.id}</div>
+                    </div>
+                    <div class="config-section">
+                `;
+
+                for (const [key, value] of Object.entries(node.config)) {
+                    const inputId = `config-${key}`;
+                    html += `
+                        <label class="config-label" for="${inputId}">${key}</label>
+                        <input 
+                            type="text" 
+                            id="${inputId}" 
+                            class="config-input" 
+                            value="${value}"
+                            onchange="app.updateNodeConfig('${nodeId}', '${key}', this.value)"
+                        />
+                    `;
+                }
+
+                html += '</div>';
+                panel.innerHTML = html;
+            },
+
+            // Update node configuration
+            updateNodeConfig(nodeId, key, value) {
+                const node = this.nodes.find(n => n.id === nodeId);
+                if (node) {
+                    node.config[key] = value;
+                    // Re-render node to show updated config
+                    const nodeEl = document.getElementById(nodeId);
+                    if (nodeEl) {
+                        const bodyEl = nodeEl.querySelector('.node-body');
+                        bodyEl.innerHTML = this.renderNodeConfig(node.config);
+                    }
+                    console.log(`⚙️ Updated ${key} = ${value}`);
+                }
+            },
+
+            // Delete node
+            deleteNode(nodeId) {
+                // Remove from state
+                this.nodes = this.nodes.filter(n => n.id !== nodeId);
+                
+                // Remove connections
+                this.connections = this.connections.filter(c => c.from !== nodeId && c.to !== nodeId);
+                
+                // Remove from DOM
+                const nodeEl = document.getElementById(nodeId);
+                if (nodeEl) nodeEl.remove();
+                
+                this.updateConnections();
+                
+                // Clear config if selected
+                if (this.selectedNode === nodeId) {
+                    this.selectedNode = null;
+                    document.getElementById('configPanel').innerHTML = `
+                        <div class="config-header">
+                            <div class="config-title">Configuration</div>
+                            <div class="config-subtitle">Select a node to configure</div>
+                        </div>
+                    `;
+                }
+                
+                console.log(`🗑️ Deleted node: ${nodeId}`);
+            },
+
+            // Setup canvas events
+            setupCanvasEvents() {
+                const canvas = document.getElementById('canvas');
+                
+                // Click outside to deselect
+                canvas.addEventListener('click', (e) => {
+                    if (e.target === canvas) {
+                        if (this.selectedNode) {
+                            const nodeEl = document.getElementById(this.selectedNode);
+                            if (nodeEl) nodeEl.classList.remove('selected');
+                            this.selectedNode = null;
+                        }
+                    }
+                });
+            },
+
+            // Setup context menu
+            setupContextMenu() {
+                document.addEventListener('contextmenu', (e) => {
+                    if (e.target.closest('.canvas-node')) {
+                        e.preventDefault();
+                        const menu = document.getElementById('contextMenu');
+                        menu.style.left = e.pageX + 'px';
+                        menu.style.top = e.pageY + 'px';
+                        menu.classList.add('show');
+                    }
+                });
+
+                document.addEventListener('click', () => {
+                    document.getElementById('contextMenu').classList.remove('show');
+                });
+            },
+
+            // Pipeline actions
+            newPipeline() {
+                if (confirm('Create a new pipeline? This will clear the current canvas.')) {
+                    this.nodes = [];
+                    this.connections = [];
+                    document.getElementById('canvas').innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">🧩</div>
+                            <div class="empty-state-title">Start Building Your Pipeline</div>
+                            <div class="empty-state-text">Drag nodes from the sidebar to begin</div>
+                        </div>
+                    `;
+                    console.log('📄 New pipeline created');
+                }
+            },
+
+            savePipeline() {
+                const pipeline = {
+                    nodes: this.nodes,
+                    connections: this.connections,
+                    timestamp: new Date().toISOString()
+                };
+                
+                const json = JSON.stringify(pipeline, null, 2);
+                const blob = new Blob([json], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `pipeline-${Date.now()}.json`;
+                a.click();
+                
+                console.log('💾 Pipeline saved');
+            },
+
+            loadPipeline() {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.json';
+                input.onchange = (e) => {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        try {
+                            const pipeline = JSON.parse(event.target.result);
+                            this.nodes = pipeline.nodes;
+                            this.connections = pipeline.connections;
+                            
+                            // Clear and re-render
+                            document.getElementById('canvas').innerHTML = '';
+                            this.nodes.forEach(node => this.renderNode(node));
+                            this.updateConnections();
+                            
+                            console.log('📂 Pipeline loaded');
+                        } catch (err) {
+                            alert('Failed to load pipeline: ' + err.message);
+                        }
+                    };
+                    reader.readAsText(file);
+                };
+                input.click();
+            },
+
+            runPipeline() {
+                if (this.nodes.length === 0) {
+                    alert('Add some nodes first!');
+                    return;
+                }
+
+                this.isRunning = true;
+                document.getElementById('statusDot').classList.add('active');
+                document.getElementById('statusText').textContent = 'Running';
+                document.getElementById('runBtn').style.display = 'none';
+                document.getElementById('stopBtn').style.display = 'flex';
+
+                // Highlight connections as active
+                document.querySelectorAll('.connection-line').forEach(line => {
+                    line.classList.add('active');
+                });
+
+                console.log('▶️ Pipeline started');
+                console.log('Pipeline definition:', JSON.stringify({ nodes: this.nodes, connections: this.connections }, null, 2));
+            },
+
+            stopPipeline() {
+                this.isRunning = false;
+                document.getElementById('statusDot').classList.remove('active');
+                document.getElementById('statusText').textContent = 'Stopped';
+                document.getElementById('runBtn').style.display = 'flex';
+                document.getElementById('stopBtn').style.display = 'none';
+
+                // Remove active state from connections
+                document.querySelectorAll('.connection-line').forEach(line => {
+                    line.classList.remove('active');
+                });
+
+                console.log('⏹️ Pipeline stopped');
+            },
+
+            deleteSelectedNode() {
+                if (this.selectedNode) {
+                    this.deleteNode(this.selectedNode);
+                }
+            },
+
+            duplicateSelectedNode() {
+                if (this.selectedNode) {
+                    const node = this.nodes.find(n => n.id === this.selectedNode);
+                    if (node) {
+                        this.createNode(node.type, node.category, node.x + 30, node.y + 30);
+                    }
+                }
+            },
+
+            resetNodeConfig() {
+                if (this.selectedNode) {
+                    const node = this.nodes.find(n => n.id === this.selectedNode);
+                    if (node) {
+                        node.config = this.getNodeConfig(node.type);
+                        this.showNodeConfig(this.selectedNode);
+                    }
+                }
+            }
+        };
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light blue and white theme inspired by Cvedix */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 17%;
+    --card: 220 60% 98%;
+    --card-foreground: 220 20% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 17%;
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 60% 96%;
+    --secondary-foreground: 220 20% 17%;
+    --muted: 220 40% 95%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 237 50% 90%;
+    --input: 237 50% 90%;
+    --ring: 239 84% 67%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ReactFlow edge/connection styling */
+.react-flow__edge-path {
+  stroke: #000000 !important;
+  stroke-width: 2;
+}
+
+.react-flow__connection-path {
+  stroke: #000000 !important;
+  stroke-width: 2;
+}
+
+.react-flow__edge.animated path {
+  stroke: #000000 !important;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #3b82f6 !important;
+  stroke-width: 3;
+}
