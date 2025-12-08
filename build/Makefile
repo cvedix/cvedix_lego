@@ -142,29 +142,101 @@ cvedix_backend_test/fast:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/cvedix_backend_test.dir/build.make test/CMakeFiles/cvedix_backend_test.dir/build
 .PHONY : cvedix_backend_test/fast
 
-controllers/Get.o: controllers/Get.cc.o
-.PHONY : controllers/Get.o
+controllers/CheckFirmwareController.o: controllers/CheckFirmwareController.cc.o
+.PHONY : controllers/CheckFirmwareController.o
 
 # target to build an object file
-controllers/Get.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o
-.PHONY : controllers/Get.cc.o
+controllers/CheckFirmwareController.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o
+.PHONY : controllers/CheckFirmwareController.cc.o
 
-controllers/Get.i: controllers/Get.cc.i
-.PHONY : controllers/Get.i
+controllers/CheckFirmwareController.i: controllers/CheckFirmwareController.cc.i
+.PHONY : controllers/CheckFirmwareController.i
 
 # target to preprocess a source file
-controllers/Get.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/Get.cc.i
-.PHONY : controllers/Get.cc.i
+controllers/CheckFirmwareController.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.i
+.PHONY : controllers/CheckFirmwareController.cc.i
 
-controllers/Get.s: controllers/Get.cc.s
-.PHONY : controllers/Get.s
+controllers/CheckFirmwareController.s: controllers/CheckFirmwareController.cc.s
+.PHONY : controllers/CheckFirmwareController.s
 
 # target to generate assembly for a file
-controllers/Get.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/Get.cc.s
-.PHONY : controllers/Get.cc.s
+controllers/CheckFirmwareController.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.s
+.PHONY : controllers/CheckFirmwareController.cc.s
+
+controllers/LegoGet.o: controllers/LegoGet.cc.o
+.PHONY : controllers/LegoGet.o
+
+# target to build an object file
+controllers/LegoGet.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o
+.PHONY : controllers/LegoGet.cc.o
+
+controllers/LegoGet.i: controllers/LegoGet.cc.i
+.PHONY : controllers/LegoGet.i
+
+# target to preprocess a source file
+controllers/LegoGet.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.i
+.PHONY : controllers/LegoGet.cc.i
+
+controllers/LegoGet.s: controllers/LegoGet.cc.s
+.PHONY : controllers/LegoGet.s
+
+# target to generate assembly for a file
+controllers/LegoGet.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.s
+.PHONY : controllers/LegoGet.cc.s
+
+controllers/LegoPost.o: controllers/LegoPost.cc.o
+.PHONY : controllers/LegoPost.o
+
+# target to build an object file
+controllers/LegoPost.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o
+.PHONY : controllers/LegoPost.cc.o
+
+controllers/LegoPost.i: controllers/LegoPost.cc.i
+.PHONY : controllers/LegoPost.i
+
+# target to preprocess a source file
+controllers/LegoPost.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.i
+.PHONY : controllers/LegoPost.cc.i
+
+controllers/LegoPost.s: controllers/LegoPost.cc.s
+.PHONY : controllers/LegoPost.s
+
+# target to generate assembly for a file
+controllers/LegoPost.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.s
+.PHONY : controllers/LegoPost.cc.s
+
+filters/JWT.o: filters/JWT.cc.o
+.PHONY : filters/JWT.o
+
+# target to build an object file
+filters/JWT.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o
+.PHONY : filters/JWT.cc.o
+
+filters/JWT.i: filters/JWT.cc.i
+.PHONY : filters/JWT.i
+
+# target to preprocess a source file
+filters/JWT.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/filters/JWT.cc.i
+.PHONY : filters/JWT.cc.i
+
+filters/JWT.s: filters/JWT.cc.s
+.PHONY : filters/JWT.s
+
+# target to generate assembly for a file
+filters/JWT.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/filters/JWT.cc.s
+.PHONY : filters/JWT.cc.s
 
 main.o: main.cc.o
 .PHONY : main.o
@@ -200,9 +272,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... cvedix_backend"
 	@echo "... cvedix_backend_test"
-	@echo "... controllers/Get.o"
-	@echo "... controllers/Get.i"
-	@echo "... controllers/Get.s"
+	@echo "... controllers/CheckFirmwareController.o"
+	@echo "... controllers/CheckFirmwareController.i"
+	@echo "... controllers/CheckFirmwareController.s"
+	@echo "... controllers/LegoGet.o"
+	@echo "... controllers/LegoGet.i"
+	@echo "... controllers/LegoGet.s"
+	@echo "... controllers/LegoPost.o"
+	@echo "... controllers/LegoPost.i"
+	@echo "... controllers/LegoPost.s"
+	@echo "... filters/JWT.o"
+	@echo "... filters/JWT.i"
+	@echo "... filters/JWT.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

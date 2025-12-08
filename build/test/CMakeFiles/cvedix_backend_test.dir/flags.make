@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /usr/include/jsoncpp
+CXX_INCLUDES = -I/usr/local/include/opencv4 -isystem /usr/include/jsoncpp
 
 CXX_FLAGS = -std=c++17
 

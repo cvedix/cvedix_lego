@@ -94,8 +94,11 @@ test/cvedix_backend_test: test/CMakeFiles/cvedix_backend_test.dir/test_main.cc.o
 test/cvedix_backend_test: test/CMakeFiles/cvedix_backend_test.dir/build.make
 test/cvedix_backend_test: /usr/local/lib/libdrogon.a
 test/cvedix_backend_test: /usr/local/lib/libtrantor.a
+test/cvedix_backend_test: /usr/lib/x86_64-linux-gnu/libssl.so
+test/cvedix_backend_test: /usr/lib/x86_64-linux-gnu/libcrypto.so
 test/cvedix_backend_test: /usr/lib/x86_64-linux-gnu/libjsoncpp.so
 test/cvedix_backend_test: /usr/lib/x86_64-linux-gnu/libuuid.so
+test/cvedix_backend_test: /usr/lib/x86_64-linux-gnu/libhiredis.so
 test/cvedix_backend_test: /usr/lib/x86_64-linux-gnu/libz.so
 test/cvedix_backend_test: test/CMakeFiles/cvedix_backend_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable cvedix_backend_test"

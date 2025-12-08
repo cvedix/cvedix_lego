@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/cvedix/Documents/Template/cvedix_backend -I/home/cvedix/Documents/Template/cvedix_backend/models -isystem /usr/include/jsoncpp
+CXX_INCLUDES = -I/home/cvedix/Documents/Template/cvedix_backend -I/home/cvedix/Documents/Template/cvedix_backend/models -isystem /usr/local/include/opencv4 -isystem /usr/include/jsoncpp
 
 CXX_FLAGS = -std=c++17
 

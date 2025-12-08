@@ -8,7 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/cvedix/Documents/Template/cvedix_backend/controllers/Get.cc" "CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/controllers/Get.cc.o.d"
+  "/home/cvedix/Documents/Template/cvedix_backend/controllers/CheckFirmwareController.cc" "CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o.d"
+  "/home/cvedix/Documents/Template/cvedix_backend/controllers/LegoGet.cc" "CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o.d"
+  "/home/cvedix/Documents/Template/cvedix_backend/controllers/LegoPost.cc" "CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o.d"
+  "/home/cvedix/Documents/Template/cvedix_backend/filters/JWT.cc" "CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o.d"
   "/home/cvedix/Documents/Template/cvedix_backend/main.cc" "CMakeFiles/cvedix_backend.dir/main.cc.o" "gcc" "CMakeFiles/cvedix_backend.dir/main.cc.o.d"
   )
 
