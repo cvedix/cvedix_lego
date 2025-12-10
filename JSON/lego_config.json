@@ -1,17 +1,29 @@
 {
-    "node_name_rtsp": "rtsp_node_01",
-    "channel_index": 0,
-    "rtsp_url": "rtsp://103.147.186.175:18554/AA06E7CPAJ91031",
-    "resize_ratio": 1.0,
-    "gst_decoder_name": "decodebin",
-    "skip_interval": 5,
-    "expected_codec": "H264",
-
-    "node_name_rtmp": "rtmp_node_03",
-    "rtmp_url": "rtmp://example.com/live/stream",
-    "resolution_width": 1280,
-    "resolution_height": 720,
-    "bitrate": 4000,
-    "osd": true,
-    "gst_encoder_name": "x264enc"
+    "nodes": [
+        {
+            "type": "cvedix_file_src_node",
+            "config": {
+                "node_name": "file_src",
+                "channel_index": 0,
+                "file_path": "/home/cvedix/Documents/Template/cvedix_backend/Video/sample.mp4",
+                "resize_ratio": 1.0,
+                "cycle": true,
+                "gst_decoder_name": "avdec_h264",
+                "skip_interval": 0
+            }
+        },
+        {
+            "type": "cvedix_rtmp_des_node",
+            "config": {
+                "node_name": "rtmp_node",
+                "channel_index": 0,
+                "rtmp_url": "rtmp://anhoidong.datacenter.cvedix.com:1935/live/Phuc",
+                "resolution_width": 1280,
+                "resolution_height": 720,
+                "bitrate": 4000,
+                "osd": true,
+                "gst_encoder_name": "x264enc"
+            }
+        }
+    ]
 }
