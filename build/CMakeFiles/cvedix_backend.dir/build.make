@@ -97,38 +97,52 @@ CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.s: cmake_fo
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/CheckFirmwareController.cc -o CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.s
 
-CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
-CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o: /home/cvedix/Documents/Template/cvedix_backend/controllers/LegoGet.cc
-CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o -MF CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o.d -o CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/controllers/LegoGet.cc
+CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
+CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o: /home/cvedix/Documents/Template/cvedix_backend/controllers/ControlPanel.cc
+CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o -MF CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o.d -o CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/controllers/ControlPanel.cc
 
-CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cvedix/Documents/Template/cvedix_backend/controllers/LegoGet.cc > CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.i
+CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cvedix/Documents/Template/cvedix_backend/controllers/ControlPanel.cc > CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.i
 
-CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/LegoGet.cc -o CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.s
+CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/ControlPanel.cc -o CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.s
 
-CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
-CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o: /home/cvedix/Documents/Template/cvedix_backend/controllers/LegoPost.cc
-CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o -MF CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o.d -o CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/controllers/LegoPost.cc
+CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
+CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o: /home/cvedix/Documents/Template/cvedix_backend/controllers/GetVideoFromClient.cc
+CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o -MF CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o.d -o CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/controllers/GetVideoFromClient.cc
 
-CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cvedix/Documents/Template/cvedix_backend/controllers/LegoPost.cc > CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.i
+CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cvedix/Documents/Template/cvedix_backend/controllers/GetVideoFromClient.cc > CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.i
 
-CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/LegoPost.cc -o CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.s
+CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/GetVideoFromClient.cc -o CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.s
+
+CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
+CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o: /home/cvedix/Documents/Template/cvedix_backend/controllers/NodeFactory.cc
+CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o -MF CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o.d -o CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/controllers/NodeFactory.cc
+
+CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cvedix/Documents/Template/cvedix_backend/controllers/NodeFactory.cc > CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.i
+
+CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cvedix/Documents/Template/cvedix_backend/controllers/NodeFactory.cc -o CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.s
 
 CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o: CMakeFiles/cvedix_backend.dir/flags.make
 CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o: /home/cvedix/Documents/Template/cvedix_backend/filters/JWT.cc
 CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o: CMakeFiles/cvedix_backend.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o -MF CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o.d -o CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o -c /home/cvedix/Documents/Template/cvedix_backend/filters/JWT.cc
 
 CMakeFiles/cvedix_backend.dir/filters/JWT.cc.i: cmake_force
@@ -143,8 +157,9 @@ CMakeFiles/cvedix_backend.dir/filters/JWT.cc.s: cmake_force
 cvedix_backend_OBJECTS = \
 "CMakeFiles/cvedix_backend.dir/main.cc.o" \
 "CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o" \
-"CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o" \
-"CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o" \
+"CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o" \
+"CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o" \
+"CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o" \
 "CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o"
 
 # External object files for target cvedix_backend
@@ -152,8 +167,9 @@ cvedix_backend_EXTERNAL_OBJECTS =
 
 cvedix_backend: CMakeFiles/cvedix_backend.dir/main.cc.o
 cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.o
-cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o
-cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o
+cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o
+cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o
+cvedix_backend: CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o
 cvedix_backend: CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o
 cvedix_backend: CMakeFiles/cvedix_backend.dir/build.make
 cvedix_backend: /usr/local/lib/libdrogon.a
@@ -219,7 +235,7 @@ cvedix_backend: /usr/lib/x86_64-linux-gnu/libz.so
 cvedix_backend: /usr/lib/x86_64-linux-gnu/libssl.so
 cvedix_backend: /usr/lib/x86_64-linux-gnu/libcrypto.so
 cvedix_backend: CMakeFiles/cvedix_backend.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable cvedix_backend"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cvedix/Documents/Template/cvedix_backend/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable cvedix_backend"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cvedix_backend.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

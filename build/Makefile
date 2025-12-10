@@ -166,53 +166,77 @@ controllers/CheckFirmwareController.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/CheckFirmwareController.cc.s
 .PHONY : controllers/CheckFirmwareController.cc.s
 
-controllers/LegoGet.o: controllers/LegoGet.cc.o
-.PHONY : controllers/LegoGet.o
+controllers/ControlPanel.o: controllers/ControlPanel.cc.o
+.PHONY : controllers/ControlPanel.o
 
 # target to build an object file
-controllers/LegoGet.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.o
-.PHONY : controllers/LegoGet.cc.o
+controllers/ControlPanel.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.o
+.PHONY : controllers/ControlPanel.cc.o
 
-controllers/LegoGet.i: controllers/LegoGet.cc.i
-.PHONY : controllers/LegoGet.i
+controllers/ControlPanel.i: controllers/ControlPanel.cc.i
+.PHONY : controllers/ControlPanel.i
 
 # target to preprocess a source file
-controllers/LegoGet.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.i
-.PHONY : controllers/LegoGet.cc.i
+controllers/ControlPanel.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.i
+.PHONY : controllers/ControlPanel.cc.i
 
-controllers/LegoGet.s: controllers/LegoGet.cc.s
-.PHONY : controllers/LegoGet.s
+controllers/ControlPanel.s: controllers/ControlPanel.cc.s
+.PHONY : controllers/ControlPanel.s
 
 # target to generate assembly for a file
-controllers/LegoGet.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoGet.cc.s
-.PHONY : controllers/LegoGet.cc.s
+controllers/ControlPanel.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/ControlPanel.cc.s
+.PHONY : controllers/ControlPanel.cc.s
 
-controllers/LegoPost.o: controllers/LegoPost.cc.o
-.PHONY : controllers/LegoPost.o
+controllers/GetVideoFromClient.o: controllers/GetVideoFromClient.cc.o
+.PHONY : controllers/GetVideoFromClient.o
 
 # target to build an object file
-controllers/LegoPost.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.o
-.PHONY : controllers/LegoPost.cc.o
+controllers/GetVideoFromClient.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o
+.PHONY : controllers/GetVideoFromClient.cc.o
 
-controllers/LegoPost.i: controllers/LegoPost.cc.i
-.PHONY : controllers/LegoPost.i
+controllers/GetVideoFromClient.i: controllers/GetVideoFromClient.cc.i
+.PHONY : controllers/GetVideoFromClient.i
 
 # target to preprocess a source file
-controllers/LegoPost.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.i
-.PHONY : controllers/LegoPost.cc.i
+controllers/GetVideoFromClient.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.i
+.PHONY : controllers/GetVideoFromClient.cc.i
 
-controllers/LegoPost.s: controllers/LegoPost.cc.s
-.PHONY : controllers/LegoPost.s
+controllers/GetVideoFromClient.s: controllers/GetVideoFromClient.cc.s
+.PHONY : controllers/GetVideoFromClient.s
 
 # target to generate assembly for a file
-controllers/LegoPost.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/LegoPost.cc.s
-.PHONY : controllers/LegoPost.cc.s
+controllers/GetVideoFromClient.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.s
+.PHONY : controllers/GetVideoFromClient.cc.s
+
+controllers/NodeFactory.o: controllers/NodeFactory.cc.o
+.PHONY : controllers/NodeFactory.o
+
+# target to build an object file
+controllers/NodeFactory.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o
+.PHONY : controllers/NodeFactory.cc.o
+
+controllers/NodeFactory.i: controllers/NodeFactory.cc.i
+.PHONY : controllers/NodeFactory.i
+
+# target to preprocess a source file
+controllers/NodeFactory.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.i
+.PHONY : controllers/NodeFactory.cc.i
+
+controllers/NodeFactory.s: controllers/NodeFactory.cc.s
+.PHONY : controllers/NodeFactory.s
+
+# target to generate assembly for a file
+controllers/NodeFactory.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.s
+.PHONY : controllers/NodeFactory.cc.s
 
 filters/JWT.o: filters/JWT.cc.o
 .PHONY : filters/JWT.o
@@ -275,12 +299,15 @@ help:
 	@echo "... controllers/CheckFirmwareController.o"
 	@echo "... controllers/CheckFirmwareController.i"
 	@echo "... controllers/CheckFirmwareController.s"
-	@echo "... controllers/LegoGet.o"
-	@echo "... controllers/LegoGet.i"
-	@echo "... controllers/LegoGet.s"
-	@echo "... controllers/LegoPost.o"
-	@echo "... controllers/LegoPost.i"
-	@echo "... controllers/LegoPost.s"
+	@echo "... controllers/ControlPanel.o"
+	@echo "... controllers/ControlPanel.i"
+	@echo "... controllers/ControlPanel.s"
+	@echo "... controllers/GetVideoFromClient.o"
+	@echo "... controllers/GetVideoFromClient.i"
+	@echo "... controllers/GetVideoFromClient.s"
+	@echo "... controllers/NodeFactory.o"
+	@echo "... controllers/NodeFactory.i"
+	@echo "... controllers/NodeFactory.s"
 	@echo "... filters/JWT.o"
 	@echo "... filters/JWT.i"
 	@echo "... filters/JWT.s"
