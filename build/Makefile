@@ -238,6 +238,30 @@ controllers/NodeFactory.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.s
 .PHONY : controllers/NodeFactory.cc.s
 
+controllers/NodeRegistry.o: controllers/NodeRegistry.cc.o
+.PHONY : controllers/NodeRegistry.o
+
+# target to build an object file
+controllers/NodeRegistry.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/NodeRegistry.cc.o
+.PHONY : controllers/NodeRegistry.cc.o
+
+controllers/NodeRegistry.i: controllers/NodeRegistry.cc.i
+.PHONY : controllers/NodeRegistry.i
+
+# target to preprocess a source file
+controllers/NodeRegistry.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/NodeRegistry.cc.i
+.PHONY : controllers/NodeRegistry.cc.i
+
+controllers/NodeRegistry.s: controllers/NodeRegistry.cc.s
+.PHONY : controllers/NodeRegistry.s
+
+# target to generate assembly for a file
+controllers/NodeRegistry.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cvedix_backend.dir/build.make CMakeFiles/cvedix_backend.dir/controllers/NodeRegistry.cc.s
+.PHONY : controllers/NodeRegistry.cc.s
+
 filters/JWT.o: filters/JWT.cc.o
 .PHONY : filters/JWT.o
 
@@ -308,6 +332,9 @@ help:
 	@echo "... controllers/NodeFactory.o"
 	@echo "... controllers/NodeFactory.i"
 	@echo "... controllers/NodeFactory.s"
+	@echo "... controllers/NodeRegistry.o"
+	@echo "... controllers/NodeRegistry.i"
+	@echo "... controllers/NodeRegistry.s"
 	@echo "... filters/JWT.o"
 	@echo "... filters/JWT.i"
 	@echo "... filters/JWT.s"

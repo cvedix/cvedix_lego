@@ -1,5 +1,4 @@
 #include "ControlPanel.h"
-#include <filesystem>
 
 using json = nlohmann::json;
 
@@ -53,43 +52,37 @@ void ControlPanel::runPipeline(
         );
 
 
-        std::string yolo_weights = "../Model/yolov3-tiny-2022-0721_best.weights";
-        std::string yolo_config = "../Model/yolov3-tiny-2022-0721.cfg";
-        std::string yolo_classes = "../Model/yolov3_tiny_5classes.txt";
-
-
         auto face_detector = std::make_shared<cvedix_nodes::cvedix_yunet_face_detector_node>(
-            "face_detector",
-            "../Model/model.onnx",
-            0.7,  // score_threshold
-            0.5,  // nms_threshold
-            50    // top_k
+            jsonData["nodes"][2]["config"]["node_name"].get<std::string>(),
+            "../Model/face_detection_yunet_2022mar.onnx"
         );
 
-        auto tracker = std::make_shared<cvedix_nodes::cvedix_sort_track_node>("sort_tracker");
+        auto osd = std::make_shared<cvedix_nodes::cvedix_face_osd_node>(
+            jsonData["nodes"][3]["config"]["node_name"].get<std::string>()
+        );
 
-        auto osd = std::make_shared<cvedix_nodes::cvedix_face_osd_node_v2>("osd");
-
-        auto screen_des_0 = std::make_shared<cvedix_nodes::cvedix_screen_des_node>(
-        "screen_des_0",
-        0,
-        true  // Enable OSD
+        auto screen = std::make_shared<cvedix_nodes::cvedix_screen_des_node>(
+            jsonData["nodes"][4]["config"]["node_name"].get<std::string>(),
+            jsonData["nodes"][4]["config"]["channel_index"].get<int>(),
+            jsonData["nodes"][4]["config"]["osd"].get<bool>()  // Enable OSD
         );
 
 
 
-        // face_detector->attach_to({file});
-        // tracker->attach_to({face_detector});
-        osd->attach_to({file});
-        rtmp->attach_to({file});
-        screen_des_0->attach_to({osd});
+        face_detector->attach_to({file});
+        osd->attach_to({face_detector});
+        screen->attach_to({osd});
+        rtmp->attach_to({osd});
+
 
         file->start();
 
+        std::cout << "[INFO] Pipeline started successfully" << std::endl;
 
         cvedix_utils::cvedix_analysis_board board({file});
         board.display(1, false);
 
+        while(1);
 
         file->detach_recursively();
     }

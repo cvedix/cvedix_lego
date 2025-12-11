@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/cvedix_backend.dir/controllers/GetVideoFromClient.cc.o.d"
   "CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o"
   "CMakeFiles/cvedix_backend.dir/controllers/NodeFactory.cc.o.d"
+  "CMakeFiles/cvedix_backend.dir/controllers/NodeRegistry.cc.o"
+  "CMakeFiles/cvedix_backend.dir/controllers/NodeRegistry.cc.o.d"
   "CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o"
   "CMakeFiles/cvedix_backend.dir/filters/JWT.cc.o.d"
   "CMakeFiles/cvedix_backend.dir/main.cc.o"
