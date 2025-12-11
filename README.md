@@ -129,12 +129,26 @@ public:
     void updateUser(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback, int userId);
     void deleteUser(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback, int userId);
 };
+
+
 ```
+Thêm node AI 
+Link rtmp stream video
+```
+
+
+``` Cách build ```
+bash:
+mkdir build && cd build
+cmake ..
+make -j4
+
+
+
 
 **📌 Lưu ý:**
 - Template parameter thứ 2 phải là `true` để auto-register
 - Class name không được trùng với HTTP methods (Get, Post, Put, Delete)
-
 
 
 
