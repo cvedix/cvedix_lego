@@ -30,7 +30,15 @@ add_executable(${PROJECT_NAME} main.cc)
 # and comment out the following lines
 find_package(Drogon CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
-
+find_package(jwt-cpp CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE jwt-cpp::jwt-cpp)
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${OpenCV_LIBS})
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(CVEDIX REQUIRED cvedix)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CVEDIX_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${CVEDIX_LIBRARIES})
 # ##############################################################################
 
 if (CMAKE_CXX_STANDARD LESS 17)
@@ -58,7 +66,8 @@ drogon_create_views(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/views
 
 target_include_directories(${PROJECT_NAME}
                            PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
-                                   ${CMAKE_CURRENT_SOURCE_DIR}/models)
+                                   ${CMAKE_CURRENT_SOURCE_DIR}/models
+                                   ${CVEDIX_INCLUDE_DIRS})
 target_sources(${PROJECT_NAME}
                PRIVATE
                ${SRC_DIR}

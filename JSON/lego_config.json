@@ -1,0 +1,29 @@
+{
+    "nodes": [
+        {
+            "type": "cvedix_file_src_node",
+            "config": {
+                "node_name": "file_src",
+                "channel_index": 0,
+                "file_path": "/home/cvedix/Documents/Template/cvedix_backend/Video/sample.mp4",
+                "resize_ratio": 1.0,
+                "cycle": true,
+                "gst_decoder_name": "avdec_h264",
+                "skip_interval": 0
+            }
+        },
+        {
+            "type": "cvedix_rtmp_des_node",
+            "config": {
+                "node_name": "rtmp_node",
+                "channel_index": 0,
+                "rtmp_url": "rtmp://anhoidong.datacenter.cvedix.com:1935/live/Phuc",
+                "resolution_width": 1280,
+                "resolution_height": 720,
+                "bitrate": 4000,
+                "osd": true,
+                "gst_encoder_name": "x264enc"
+            }
+        }
+    ]
+}

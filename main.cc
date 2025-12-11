@@ -1,12 +1,11 @@
 #include <drogon/drogon.h>
-using namespace drogon;
 
 int main()
 {
-    // Set HTTP listener address and port
-    app().addListener("0.0.0.0", 8080);
+    drogon::app()
+        .loadConfigFile("../config.json")
+        .addListener("0.0.0.0", 8090)
+        .run();
 
-    // Run HTTP framework
-    app().run();
     return 0;
 }
