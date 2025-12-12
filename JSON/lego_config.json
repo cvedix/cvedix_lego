@@ -5,7 +5,6 @@
             "config": {
                 "node_name": "file_src",
                 "channel_index": 0,
-                "file_path": "/home/cvedix/Documents/Template/cvedix_backend/Video/sample.mp4",
                 "resize_ratio": 1.0,
                 "cycle": true,
                 "gst_decoder_name": "avdec_h264",
@@ -13,14 +12,34 @@
             }
         },
         {
+            "type": "cvedix_yunet_face_detector_node",
+            "config": {
+                "node_name": "face_detector"
+            }
+        },
+        {
+            "type": "cvedix_face_osd_node",
+            "config": {
+                "node_name": "osd"
+            }
+        },
+        {
+            "type": "cvedix_screen_des_node",
+            "config": {
+                "node_name": "screen_des_0",
+                "channel_index": 0,   
+                "osd": true
+            }
+        },
+        {
             "type": "cvedix_rtmp_des_node",
             "config": {
                 "node_name": "rtmp_node",
                 "channel_index": 0,
-                "rtmp_url": "rtmp://anhoidong.datacenter.cvedix.com:1935/live/Phuc",
-                "resolution_width": 1280,
-                "resolution_height": 720,
-                "bitrate": 4000,
+                "rtmp_url": "rtmp://anhoidong.datacenter.cvedix.com:1935/live/stream",
+                "resolution_width": 960,
+                "resolution_height": 540,
+                "bitrate": 1000,
                 "osd": true,
                 "gst_encoder_name": "x264enc"
             }
