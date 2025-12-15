@@ -33,12 +33,18 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
 find_package(jwt-cpp CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE jwt-cpp::jwt-cpp)
 find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PRIVATE ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${OpenCV_LIBS})
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(CVEDIX REQUIRED cvedix)
+target_link_directories(${PROJECT_NAME}
+    PRIVATE ${CVEDIX_LIBRARY_DIRS}
+)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CVEDIX_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${CVEDIX_LIBRARIES})
+pkg_check_modules(GST REQUIRED gstreamer-1.0 gstreamer-video-1.0)
+target_include_directories(${PROJECT_NAME} PRIVATE ${GST_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${GST_LIBRARIES})
 # ##############################################################################
 
 if (CMAKE_CXX_STANDARD LESS 17)
@@ -75,10 +81,14 @@ target_sources(${PROJECT_NAME}
                ${FILTER_SRC}
                ${PLUGIN_SRC}
                ${MODEL_SRC})
+target_compile_definitions(cvedix_backend
+    PRIVATE CVEDIX_WITH_GSTREAMER
+)
+
 # ##############################################################################
-# uncomment the following line for dynamically loading views 
+# uncomment the following line for dynamically loading views
 # set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)
 
 # ##############################################################################
-
+message(STATUS "CVEDIX INCLUDE DIRS = ${CVEDIX_INCLUDE_DIRS}")
 add_subdirectory(test)

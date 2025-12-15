@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 // ---- Behavior analysis nodes (lightweight kept by default) ----
 #include "cvedix/nodes/ba/cvedix_ba_crossline_node.h"
 #include "cvedix/nodes/ba/cvedix_ba_jam_node.h"

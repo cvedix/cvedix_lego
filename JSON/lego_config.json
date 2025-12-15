@@ -1,48 +1,130 @@
 {
-    "nodes": [
-        {
-            "type": "cvedix_file_src_node",
-            "config": {
-                "node_name": "file_src",
-                "channel_index": 0,
-                "resize_ratio": 1.0,
-                "cycle": true,
-                "gst_decoder_name": "avdec_h264",
-                "skip_interval": 0
-            }
-        },
-        {
-            "type": "cvedix_yunet_face_detector_node",
-            "config": {
-                "node_name": "face_detector"
-            }
-        },
-        {
-            "type": "cvedix_face_osd_node",
-            "config": {
-                "node_name": "osd"
-            }
-        },
-        {
-            "type": "cvedix_screen_des_node",
-            "config": {
-                "node_name": "screen_des_0",
-                "channel_index": 0,   
-                "osd": true
-            }
-        },
-        {
-            "type": "cvedix_rtmp_des_node",
-            "config": {
-                "node_name": "rtmp_node",
-                "channel_index": 0,
-                "rtmp_url": "rtmp://anhoidong.datacenter.cvedix.com:1935/live/stream",
-                "resolution_width": 960,
-                "resolution_height": 540,
-                "bitrate": 1000,
-                "osd": true,
-                "gst_encoder_name": "x264enc"
-            }
-        }
-    ]
+  "nodes": [
+    {
+      "type": "cvedix_file_src_node",
+      "config": {
+        "node_name": "file_src",
+        "channel_index": 0,
+        "resize_ratio": 1.0,
+        "cycle": false,
+        "gst_decoder_name": "avdec_h264",
+        "skip_interval": 0
+      }
+    },
+    {
+      "type": "cvedix_frame_decoder_node",
+      "config": {
+        "node_name": "decoder_0",
+        "channel_index": 0,
+        "gst_decoder_name": "avdec_h264",
+        "output_format": "BGR"
+      }
+    },
+    {
+      "type": "cvedix_preprocess_node",
+      "config": {
+        "node_name": "preprocess_0",
+        "channel_index": 0,
+        "target_width": 640,
+        "target_height": 360,
+        "normalize": true,
+        "color_convert": "BGR2RGB"
+      }
+    },
+    {
+      "type": "cvedix_infer_node",
+      "config": {
+        "node_name": "infer_yolo",
+        "model_path": "../Model/yolov3-tiny-2022-0721_best.weights",
+        "framework": "onnx",
+        "device": "CPU",
+        "batch_size": 1,
+        "frame_meta_handle_batch": 1,
+        "confidence_threshold": 0.5
+      }
+    },
+    {
+      "type": "cvedix_tracker_node",
+      "config": {
+        "node_name": "tracker_0",
+        "tracker_type": "sort",
+        "max_lost": 30,
+        "iou_threshold": 0.3
+      }
+    },
+    
+    
+    
+    
+    
+    
+    {
+      "type": "cvedix_face_osd_node",
+      "config": {
+        "node_name": "face_osd"
+      }
+    },
+    {
+      "type": "cvedix_analytics_node",
+      "config": {
+        "node_name": "analytics_0",
+        "rules": [
+          {
+            "type": "count",
+            "target_class": "person",
+            "window_seconds": 60
+          },
+          {
+            "type": "crossline",
+            "line": [
+              [100, 200],
+              [500, 200]
+            ],
+            "target_class": "person"
+          }
+        ],
+        "emit_alerts": true
+      }
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    {
+      "type": "cvedix_rtmp_des_node",
+      "config": {
+        "node_name": "rtmp_node",
+        "channel_index": 0,
+        "rtmp_url": "rtmp://anhoidong.datacenter.cvedix.com:1935/live/stream",
+        "resolution_width": 640,
+        "resolution_height": 360,
+        "bitrate": 1000,
+        "osd": true,
+        "gst_encoder_name": "x264enc"
+      }
+    }
+  ]
 }
