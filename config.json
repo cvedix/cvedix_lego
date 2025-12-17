@@ -11,7 +11,7 @@
             //["Options", "-SessionTicket"], 
             //["Options", "Compression"]
         ]
-    },
+    },*
     "listeners": [
         {
             //address: Ip address,0.0.0.0 by default
@@ -74,6 +74,19 @@
             //"connect_options": { "statement_timeout": "1s" }
         }
     ],*/
+    "listeners": [
+        {
+            "address": "0.0.0.0",
+            "port": 8090
+        }
+    ],
+    "db_clients": [
+        {
+            "name": "default",
+            "rdbms": "sqlite3",
+            "filename": "../Database/app.db"
+        }
+    ],
     "redis_clients": [
         {
             //name: Name of the client,'default' by default

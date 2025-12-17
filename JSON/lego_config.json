@@ -11,15 +11,15 @@
         "skip_interval": 0
       }
     },
-    {
-      "type": "cvedix_frame_decoder_node",
-      "config": {
-        "node_name": "decoder_0",
-        "channel_index": 0,
-        "gst_decoder_name": "avdec_h264",
-        "output_format": "BGR"
-      }
-    },
+    
+    
+    
+    
+    
+    
+    
+    
+    
     {
       "type": "cvedix_preprocess_node",
       "config": {
@@ -43,25 +43,26 @@
         "confidence_threshold": 0.5
       }
     },
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     {
-      "type": "cvedix_tracker_node",
+      "type": "cvedix_yunet_face_detector_node",
       "config": {
-        "node_name": "tracker_0",
-        "tracker_type": "sort",
-        "max_lost": 30,
-        "iou_threshold": 0.3
+        "node_name": "face_detector"
       }
     },
-    
-    
-    
-    
-    
-    
     {
       "type": "cvedix_face_osd_node",
       "config": {
-        "node_name": "face_osd"
+        "node_name": "osd"
       }
     },
     {
@@ -86,12 +87,12 @@
         "emit_alerts": true
       }
     },
-    
-    
-    
-    
-    
-    
+    {
+      "type": "cvedix_json_mqtt_broker_node",
+      "config": {
+        "node_name": "mqtt_publisher"
+      }
+    },
     
     
     
@@ -105,14 +106,14 @@
     
 
     
-    
-    
-    
-    
-    
-    
-    
-    
+    {
+      "type": "cvedix_screen_des_node",
+      "config": {
+        "node_name": "screen_des_0",
+        "channel_index": 0,
+        "osd": true
+      }
+    },
     {
       "type": "cvedix_rtmp_des_node",
       "config": {
