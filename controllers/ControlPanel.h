@@ -16,7 +16,7 @@
 #include <unistd.h>
 
 #include "All_Node.h"
-#include "cvedix/utils/analysis_board/cvedix_analysis_board.h"
+#include <cvedix/utils/analysis_board/cvedix_analysis_board.h>
 #include "NodeFactory.h"
 
 using namespace drogon;
@@ -27,8 +27,8 @@ class ControlPanel : public drogon::HttpController<ControlPanel>
 {
 public:
   METHOD_LIST_BEGIN
-  ADD_METHOD_TO(ControlPanel::runPipeline, "/lego/StartPipeline", Post);
-  ADD_METHOD_TO(ControlPanel::stopPipeline, "/lego/StopPipeline", Post);
+  ADD_METHOD_TO(ControlPanel::runPipeline, "/lego/startpipeline", Post);
+  ADD_METHOD_TO(ControlPanel::stopPipeline, "/lego/stoppipeline", Post);
   METHOD_LIST_END
 
   void runPipeline(const HttpRequestPtr &req,
