@@ -27,7 +27,7 @@ void MakeNode::NodeRegister(json &jsonData)
             file_src = std::make_shared<cvedix_nodes::cvedix_file_src_node>(
                 jsonData["nodes"][countNode]["config"]["node_name"].get<std::string>(),
                 jsonData["nodes"][countNode]["config"]["channel_index"].get<int>(),
-                "/home/cvedix/Documents/Template/cvedix_backend/Video/sample.mp4",
+                "/opt/cvedix/media/" + jsonData["nodes"][countNode]["config"]["video_name"].get<std::string>(),
                 jsonData["nodes"][countNode]["config"]["resize_ratio"].get<int>(),
                 jsonData["nodes"][countNode]["config"]["cycle"].get<bool>(),
                 jsonData["nodes"][countNode]["config"]["gst_decoder_name"].get<std::string>(),
