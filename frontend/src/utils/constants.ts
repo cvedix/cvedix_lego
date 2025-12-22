@@ -18,6 +18,12 @@ export const NODE_COLORS = {
     text: 'text-cyan-700',
     accent: 'bg-cyan-500',
   },
+  hidden: {
+    bg: 'bg-gray-50',
+    border: 'border-gray-500',
+    text: 'text-gray-700',
+    accent: 'bg-gray-500',
+  },
 };
 
 // Pipeline status colors

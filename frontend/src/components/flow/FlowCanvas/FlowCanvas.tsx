@@ -13,12 +13,14 @@ import ReactFlow, {
   EdgeChange,
 } from 'reactflow';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { addNode, addConnection, removeConnection, updateNodePosition, selectNode } from '@/store';
+import { addNode, addConnection, removeConnection, updateNodePosition, selectNode, openVideoSelectionModal } from '@/store';
 import { SourceNode } from '../nodes/SourceNode/SourceNode';
 import { ProcessingNode } from '../nodes/ProcessingNode/ProcessingNode';
 import { OutputNode } from '../nodes/OutputNode/OutputNode';
 import { useNodeRegistry } from '@/hooks/useNodeRegistry';
 import { validateConnection } from '@/utils/validation';
+import { generateAutoConnections } from '@/utils/pipelineBuilder';
+import { CvedixNodeType } from '@/models';
 import { v4 as uuidv4 } from 'uuid';
 
 const nodeTypes: NodeTypes = {
@@ -123,9 +125,28 @@ export const FlowCanvas: React.FC = () => {
       const newNode = createNodeInstance(nodeType, position);
       if (newNode) {
         dispatch(addNode(newNode));
+
+        // Auto-generate connections after adding node
+        setTimeout(() => {
+          const updatedNodes = [...pipeline.nodes, newNode];
+          const autoConnections = generateAutoConnections(updatedNodes);
+
+          // Clear existing connections and add new ones
+          pipeline.connections.forEach((conn) => {
+            dispatch(removeConnection(conn.id));
+          });
+          autoConnections.forEach((conn) => {
+            dispatch(addConnection(conn));
+          });
+        }, 100);
+
+        // Open video selection modal for source nodes
+        if (nodeType === CvedixNodeType.FILE_SOURCE) {
+          dispatch(openVideoSelectionModal(newNode.id));
+        }
       }
     },
-    [reactFlowInstance, createNodeInstance, dispatch]
+    [reactFlowInstance, createNodeInstance, dispatch, pipeline.nodes, pipeline.connections]
   );
 
   const onNodeClick = useCallback(

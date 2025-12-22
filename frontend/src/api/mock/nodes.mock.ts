@@ -1,12 +1,12 @@
-import { NodeSchema, NodeCategory } from '@/models';
+import { NodeSchema, NodeCategory, CvedixNodeType } from '@/models';
 
 export const mockNodeSchemas: NodeSchema[] = [
-  // VIDEO FILE SOURCE NODE
+  // SOURCE NODE: File Source
   {
-    type: 'video-file',
+    type: CvedixNodeType.FILE_SOURCE,
     category: NodeCategory.SOURCE,
-    name: 'Video File',
-    description: 'Load video from disk for processing',
+    name: 'Video Source',
+    description: 'Select or upload video file for processing',
     icon: '🎥',
     version: '1.0.0',
     inputs: [],
@@ -21,56 +21,32 @@ export const mockNodeSchemas: NodeSchema[] = [
     ],
     configSchema: [
       {
-        key: 'filePath',
-        label: 'File Path',
+        key: 'video_name',
+        label: 'Video File',
         type: 'text',
-        defaultValue: '/path/to/video.mp4',
+        defaultValue: '',
         validation: { required: true },
-        helpText: 'Path to the video file',
-      },
-      {
-        key: 'loop',
-        label: 'Loop Playback',
-        type: 'toggle',
-        defaultValue: false,
-        helpText: 'Repeat video when it ends',
-      },
-      {
-        key: 'startFrame',
-        label: 'Start Frame',
-        type: 'number',
-        defaultValue: 0,
-        validation: { min: 0 },
-        helpText: 'Frame to start playback from',
-      },
-      {
-        key: 'fps',
-        label: 'Frames Per Second',
-        type: 'number',
-        defaultValue: 30,
-        validation: { required: true, min: 1, max: 120 },
-        helpText: 'Playback frame rate',
+        helpText: 'Selected video file name',
       },
     ],
     defaultConfig: {
-      filePath: '/path/to/video.mp4',
-      loop: false,
-      startFrame: 0,
-      fps: 30,
-    },
-    resourceRequirements: {
-      cpu: 1,
-      memory: 256,
+      node_name: 'file_src',
+      channel_index: 0,
+      video_name: '',
+      resize_ratio: 1.0,
+      cycle: false,
+      gst_decoder_name: 'avdec_h264',
+      skip_interval: 0,
     },
   },
 
-  // FACE DETECTION PROCESSING NODE
+  // PROCESSING NODE: Tracker (contains tracker + analytics)
   {
-    type: 'face-detection',
+    type: CvedixNodeType.TRACKER,
     category: NodeCategory.PROCESSING,
-    name: 'Face Detection',
-    description: 'Detect and track faces in video frames using AI models',
-    icon: '😊',
+    name: 'Person Tracker',
+    description: 'Track people in video stream',
+    icon: '👤',
     version: '1.0.0',
     inputs: [
       {
@@ -83,141 +59,126 @@ export const mockNodeSchemas: NodeSchema[] = [
     ],
     outputs: [
       {
-        id: 'detections-output',
+        id: 'tracking-output',
         type: 'output',
-        dataType: 'detections',
-        label: 'Face Detections',
-        required: false,
-      },
-      {
-        id: 'annotated-video',
-        type: 'output',
-        dataType: 'video',
-        label: 'Annotated Video',
+        dataType: 'tracking',
+        label: 'Tracking Data',
         required: false,
       },
     ],
-    configSchema: [
-      {
-        key: 'model',
-        label: 'Detection Model',
-        type: 'select',
-        defaultValue: 'DNN',
-        options: [
-          { label: 'Haar Cascade (Fast)', value: 'haar' },
-          { label: 'DNN (Accurate)', value: 'DNN' },
-        ],
-        validation: { required: true },
-        helpText: 'Choose between speed (Haar) or accuracy (DNN)',
-      },
-      {
-        key: 'threshold',
-        label: 'Confidence Threshold',
-        type: 'number',
-        defaultValue: 0.7,
-        validation: { required: true, min: 0, max: 1 },
-        helpText: 'Minimum confidence score (0.0 - 1.0)',
-      },
-      {
-        key: 'tracking',
-        label: 'Enable Face Tracking',
-        type: 'toggle',
-        defaultValue: true,
-        helpText: 'Track faces across frames for consistent IDs',
-      },
-      {
-        key: 'minFaceSize',
-        label: 'Minimum Face Size (px)',
-        type: 'number',
-        defaultValue: 30,
-        validation: { required: true, min: 10, max: 500 },
-        helpText: 'Ignore faces smaller than this size',
-      },
-      {
-        key: 'maxFaces',
-        label: 'Maximum Faces per Frame',
-        type: 'number',
-        defaultValue: 10,
-        validation: { min: 1, max: 100 },
-        helpText: 'Limit number of faces to detect',
-      },
-      {
-        key: 'drawBoundingBoxes',
-        label: 'Draw Bounding Boxes',
-        type: 'toggle',
-        defaultValue: true,
-        helpText: 'Draw boxes around detected faces',
-      },
-    ],
+    configSchema: [],
     defaultConfig: {
-      model: 'DNN',
-      threshold: 0.7,
-      tracking: true,
-      minFaceSize: 30,
-      maxFaces: 10,
-      drawBoundingBoxes: true,
-    },
-    resourceRequirements: {
-      cpu: 2,
-      gpu: 0.5,
-      memory: 512,
+      node_name: 'tracker_0',
     },
   },
 
-  // JSON OUTPUT NODE
+  // OUTPUT NODE: RTMP Destination
   {
-    type: 'json-output',
+    type: CvedixNodeType.RTMP_DESTINATION,
     category: NodeCategory.OUTPUT,
-    name: 'JSON Output',
-    description: 'Export detection results as JSON file',
-    icon: '📄',
+    name: 'RTMP Stream',
+    description: 'Stream output to RTMP server',
+    icon: '📡',
     version: '1.0.0',
     inputs: [
       {
-        id: 'detections-input',
+        id: 'video-input',
         type: 'input',
-        dataType: 'detections',
-        label: 'Detection Data',
+        dataType: 'video',
+        label: 'Video Stream',
         required: true,
       },
     ],
     outputs: [],
     configSchema: [
       {
-        key: 'outputPath',
-        label: 'Output Path',
+        key: 'rtmp_url',
+        label: 'RTMP URL',
         type: 'text',
-        defaultValue: '/output/detections.json',
+        defaultValue: 'rtmp://anhoidong.datacenter.cvedix.com:1935/live/stream',
         validation: { required: true },
-        helpText: 'Where to save the JSON file',
+        helpText: 'RTMP server URL for streaming',
       },
       {
-        key: 'format',
-        label: 'Format',
-        type: 'select',
-        defaultValue: 'pretty',
-        options: [
-          { label: 'Compact', value: 'compact' },
-          { label: 'Pretty', value: 'pretty' },
-        ],
-        helpText: 'JSON formatting style',
+        key: 'resolution_width',
+        label: 'Width (px)',
+        type: 'number',
+        defaultValue: 640,
+        validation: { min: 320, max: 1920 },
+        helpText: 'Output video width',
       },
       {
-        key: 'includeMetadata',
-        label: 'Include Metadata',
-        type: 'toggle',
-        defaultValue: true,
-        helpText: 'Include timestamps and frame IDs',
+        key: 'resolution_height',
+        label: 'Height (px)',
+        type: 'number',
+        defaultValue: 360,
+        validation: { min: 240, max: 1080 },
+        helpText: 'Output video height',
+      },
+      {
+        key: 'bitrate',
+        label: 'Bitrate (kbps)',
+        type: 'number',
+        defaultValue: 1000,
+        validation: { min: 100, max: 10000 },
+        helpText: 'Video encoding bitrate',
       },
     ],
     defaultConfig: {
-      outputPath: '/output/detections.json',
-      format: 'pretty',
-      includeMetadata: true,
-    },
-    resourceRequirements: {
-      cpu: 0.5,
-      memory: 128,
+      node_name: 'rtmp_node',
+      channel_index: 0,
+      rtmp_url: 'rtmp://anhoidong.datacenter.cvedix.com:1935/live/stream',
+      resolution_width: 640,
+      resolution_height: 360,
+      bitrate: 1000,
+      osd: true,
+      gst_encoder_name: 'x264enc',
     },
   },
 ];
+
+// Hidden node templates (not shown in palette)
+export const hiddenNodeTemplates = {
+  [CvedixNodeType.FRAME_DECODER]: {
+    type: CvedixNodeType.FRAME_DECODER,
+    config: {
+      node_name: 'decoder_0',
+      channel_index: 0,
+      gst_decoder_name: 'avdec_h264',
+      output_format: 'BGR',
+    },
+  },
+  [CvedixNodeType.PREPROCESS]: {
+    type: CvedixNodeType.PREPROCESS,
+    config: {
+      node_name: 'preprocess_0',
+      channel_index: 0,
+      target_width: 640,
+      target_height: 360,
+      normalize: true,
+      color_convert: 'BGR2RGB',
+    },
+  },
+  [CvedixNodeType.ANALYTICS]: {
+    type: CvedixNodeType.ANALYTICS,
+    config: {
+      node_name: 'analytics_0',
+      rules: [
+        {
+          type: 'count',
+          target_class: 'person',
+          window_seconds: 60,
+        },
+        {
+          type: 'crossline',
+          line: [
+            [100, 200],
+            [500, 200],
+          ],
+          target_class: 'person',
+        },
+      ],
+      emit_alerts: true,
+    },
+  },
+};
