@@ -9,8 +9,9 @@
 #include "All_Node.h"
 
 using namespace drogon;
+using json = nlohmann::json;
 
-class GetVideoFromClient : public drogon::HttpSimpleController<GetVideoFromClient>
+class PostVideo : public drogon::HttpSimpleController<PostVideo>
 {
 public:
   void asyncHandleHttpRequest(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) override;
