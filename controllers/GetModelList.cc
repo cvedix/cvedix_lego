@@ -25,8 +25,7 @@ void DeleteModel::asyncHandleHttpRequest(const HttpRequestPtr &req, std::functio
 {
     json jsonData = json::parse(req->body());
     std::string model_name = jsonData.value("model_name", "");
-    if (model_name == "vehicle_stop.mp4" || model_name == "face_person.mp4" || model_name == "vehicle_count.mp4" ||
-        model_name == "pose.mp4" || model_name == "face.mp4")
+    if (model_name == "yolov3-tiny-2022-0721_best.weights" || model_name == "yolov3-tiny-2022-0721.cfg" || model_name == "yolov3_tiny_5classes.txt")
     {
         json res;
         res["status"] = "ERROR";
@@ -35,6 +34,7 @@ void DeleteModel::asyncHandleHttpRequest(const HttpRequestPtr &req, std::functio
         httpResp->setContentTypeCode(CT_APPLICATION_JSON);
         httpResp->setBody(res.dump());
         callback(httpResp);
+        return;
     }
     std::string model_path = "/opt/cvedix/model/" + model_name;
     if (std::filesystem::exists(model_path))

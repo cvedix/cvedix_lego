@@ -26,7 +26,7 @@ void DeleteVideo::asyncHandleHttpRequest(const HttpRequestPtr &req, std::functio
     json jsonData = json::parse(req->body());
     std::string video_name = jsonData.value("video_name", "");
     if (video_name == "vehicle_stop.mp4" || video_name == "face_person.mp4" || video_name == "vehicle_count.mp4" ||
-        video_name == "pose.mp4" || video_name == "face.mp4")
+        video_name == "pose.mp4" || video_name == "face.mp4" || video_name == "vid-1.mp4")
     {
         json res;
         res["status"] = "ERROR";

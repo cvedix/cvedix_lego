@@ -24,6 +24,7 @@ void MakeNode::NodeRegister(json &jsonData)
         }
         else if (Node == "cvedix_file_src_node")
         {
+            std::cout << "[DEBUG] Creating cvedix_file_src_node" << std::endl;
             file_src = std::make_shared<cvedix_nodes::cvedix_file_src_node>(
                 jsonData["nodes"][countNode]["config"]["node_name"].get<std::string>(),
                 jsonData["nodes"][countNode]["config"]["channel_index"].get<int>(),
@@ -341,9 +342,9 @@ void MakeNode::NodeRegister(json &jsonData)
         }
         else if (Node == "cvedix_sort_track_node")
         {
+            std::cout << "[DEBUG] Creating cvedix_sort_track_node" << std::endl;
             auto file = std::make_shared<cvedix_nodes::cvedix_sort_track_node>(
-                jsonData["nodes"][countNode]["config"]["node_name"].get<std::string>(),
-                static_cast<cvedix_nodes::cvedix_track_for>(jsonData["nodes"][countNode]["config"]["track_for"].get<int>()));
+                jsonData["nodes"][countNode]["config"]["node_name"].get<std::string>());
             nodes.push_back(file);
         }
         // else if (Node == "cvedix_track_node")
@@ -437,11 +438,12 @@ void MakeNode::NodeRegister(json &jsonData)
         //         }
         else if (Node == "cvedix_yolo_detector_node")
         {
+            std::cout << "[DEBUG] Creating cvedix_yolo_detector_node" << std::endl;
             auto yolo_detector = std::make_shared<cvedix_nodes::cvedix_yolo_detector_node>(
                 jsonData["nodes"][countNode]["config"]["node_name"].get<std::string>(),
-                jsonData["nodes"][countNode]["config"]["model_path"].get<std::string>(),
-                jsonData["nodes"][countNode]["config"]["model_config_path"].get<std::string>(),
-                jsonData["nodes"][countNode]["config"]["labels_path"].get<std::string>(),
+                "/opt/cvedix/model/yolov3-tiny-2022-0721_best.weights",
+                "/opt/cvedix/model/yolov3-tiny-2022-0721.cfg",
+                "/opt/cvedix/model/yolov3_tiny_5classes.txt",
                 jsonData["nodes"][countNode]["config"]["input_width"].get<int>(),
                 jsonData["nodes"][countNode]["config"]["input_height"].get<int>(),
                 jsonData["nodes"][countNode]["config"]["batch_size"].get<int>(),
@@ -480,6 +482,7 @@ void MakeNode::NodeRegister(json &jsonData)
        */
         else if (Node == "cvedix_ba_crossline_osd_node")
         {
+            std::cout << "[DEBUG] Creating cvedix_ba_crossline_osd_node" << std::endl;
             auto ba_crossline_osd = std::make_shared<cvedix_nodes::cvedix_ba_crossline_osd_node>(
                 jsonData["nodes"][countNode]["config"]["node_name"].get<std::string>(),
                 jsonData["nodes"][countNode]["config"]["font"].get<std::string>());
@@ -902,7 +905,8 @@ void MakeNode::NodeRegister(json &jsonData)
         }
         else if (Node == "cvedix_rtmp_des_node")
         {
-            rtmp_des = std::make_shared<cvedix_nodes::cvedix_rtmp_des_node>(
+            std::cout << "[DEBUG] Creating cvedix_rtmp_des_node" << std::endl;
+            auto rtmp_des = std::make_shared<cvedix_nodes::cvedix_rtmp_des_node>(
                 jsonData["nodes"][countNode]["config"]["node_name"].get<std::string>(),
                 jsonData["nodes"][countNode]["config"]["channel_index"].get<int>(),
                 jsonData["nodes"][countNode]["config"]["rtmp_url"].get<std::string>(),
@@ -917,15 +921,30 @@ void MakeNode::NodeRegister(json &jsonData)
         }
         else if (Node == "cvedix_screen_des_node")
         {
-            std::cout << "3" << std::endl;
-            screen_des = std::make_shared<cvedix_nodes::cvedix_screen_des_node>(
+            auto screen_des = std::make_shared<cvedix_nodes::cvedix_screen_des_node>(
                 jsonData["nodes"][countNode]["config"]["node_name"].get<std::string>(),
                 jsonData["nodes"][countNode]["config"]["channel_index"].get<int>(),
                 jsonData["nodes"][countNode]["config"]["osd"].get<bool>());
             nodes.push_back(screen_des);
             des_node++;
         }
+        //----------------------------------------------------------------------------------------------------------------
+        /*
+                                ba
+        */
+        else if (Node == "cvedix_ba_crossline_node")
+        {
+            std::cout << "[DEBUG] Creating cvedix_ba_crossline_node" << std::endl;
+            auto ba_crossline = std::make_shared<cvedix_nodes::cvedix_ba_crossline_node>(
+                jsonData["nodes"][countNode]["config"]["node_name"].get<std::string>(),
+                std::map<int, cvedix_objects::cvedix_line>{},
+                true,
+                false);
+            nodes.push_back(ba_crossline);
+            des_node++;
+        }
     }
+
     //----------------------------------------------------------------------------------------------------------------
 }
 

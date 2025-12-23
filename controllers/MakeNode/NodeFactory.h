@@ -70,9 +70,7 @@ public:
                                                 | |_) / ____ \
                                                 |____/_/    \_\
     */
-    std::shared_ptr<cvedix_nodes::cvedix_ba_crossline_osd_node> ba_crossline_osd;
-    std::shared_ptr<cvedix_nodes::cvedix_ba_jam_osd_node> ba_jam_osd;
-    std::shared_ptr<cvedix_nodes::cvedix_ba_stop_osd_node> ba_stop_osd;
+    std::shared_ptr<cvedix_nodes::cvedix_ba_crossline_node> ba_crossline;
     //----------------------------------------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------------------------------------
     /*
@@ -180,6 +178,9 @@ public:
                                             | |/ / /\__/ / |/ /
                                             |___/  \____/|___/
     */
+    std::shared_ptr<cvedix_nodes::cvedix_ba_crossline_osd_node> ba_crossline_osd;
+    std::shared_ptr<cvedix_nodes::cvedix_ba_jam_osd_node> ba_jam_osd;
+    std::shared_ptr<cvedix_nodes::cvedix_ba_stop_osd_node> ba_stop_osd;
     std::shared_ptr<cvedix_nodes::cvedix_expr_osd_node> expr_osd;
     std::shared_ptr<cvedix_nodes::cvedix_face_osd_node> face_osd;
     std::shared_ptr<cvedix_nodes::cvedix_face_osd_node_v2> face_osd_v2;
