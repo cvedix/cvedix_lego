@@ -18,7 +18,7 @@ public:
   PATH_LIST_END
 };
 
-class DeleteModel : public drogon::HttpSimpleController<GetModelList>
+class DeleteModel : public drogon::HttpSimpleController<DeleteModel>
 {
 public:
   void asyncHandleHttpRequest(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) override;
