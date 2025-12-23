@@ -24,7 +24,7 @@ export const buildBackendPipeline = (nodes: NodeInstance[]): BackendPipelineRequ
         channel_index: 0,
         video_name: sourceNode.data.config.video_name || '',
         resize_ratio: 1.0,
-        cycle: sourceNode.data.config.cycle ?? false,
+        cycle: true,
         gst_decoder_name: 'avdec_h264',
         skip_interval: 0,
       },

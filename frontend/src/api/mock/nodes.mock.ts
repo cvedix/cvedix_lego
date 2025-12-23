@@ -34,7 +34,7 @@ export const mockNodeSchemas: NodeSchema[] = [
       channel_index: 0,
       video_name: '',
       resize_ratio: 1.0,
-      cycle: false,
+      cycle: true,
       gst_decoder_name: 'avdec_h264',
       skip_interval: 0,
     },
