@@ -35,6 +35,11 @@ const pipelineSlice = createSlice({
       state.pipeline.updatedAt = new Date().toISOString();
     },
 
+    addNodes: (state, action: PayloadAction<NodeInstance[]>) => {
+      state.pipeline.nodes.push(...action.payload);
+      state.pipeline.updatedAt = new Date().toISOString();
+    },
+
     removeNode: (state, action: PayloadAction<string>) => {
       const nodeId = action.payload;
       state.pipeline.nodes = state.pipeline.nodes.filter((n) => n.id !== nodeId);
@@ -114,6 +119,7 @@ const pipelineSlice = createSlice({
 
 export const {
   addNode,
+  addNodes,
   removeNode,
   updateNodeConfig,
   updateNodePosition,

@@ -12,18 +12,22 @@ export const NodePalette: React.FC = () => {
     event.dataTransfer.effectAllowed = 'move';
   };
 
-  const groupedNodes = nodeSchemas.reduce((acc, schema) => {
-    if (!acc[schema.category]) {
-      acc[schema.category] = [];
-    }
-    acc[schema.category].push(schema);
-    return acc;
-  }, {} as Record<NodeCategory, typeof nodeSchemas>);
+  // Filter out hidden nodes and group by category
+  const groupedNodes = nodeSchemas
+    .filter((schema) => schema.category !== NodeCategory.HIDDEN)
+    .reduce((acc, schema) => {
+      if (!acc[schema.category]) {
+        acc[schema.category] = [];
+      }
+      acc[schema.category].push(schema);
+      return acc;
+    }, {} as Record<NodeCategory, typeof nodeSchemas>);
 
   const categoryLabels = {
     [NodeCategory.SOURCE]: 'Source Nodes',
     [NodeCategory.PROCESSING]: 'Processing Nodes',
     [NodeCategory.OUTPUT]: 'Output Nodes',
+    [NodeCategory.HIDDEN]: 'Hidden Nodes',
   };
 
   if (isLoading) {

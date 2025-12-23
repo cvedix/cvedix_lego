@@ -1,5 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { pipelineApi } from '@/api';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { pipelineApi, BackendPipelineRequest } from '@/api/pipeline.api';
 import { useAppDispatch } from '@/store';
 import { setPipelineStatus } from '@/store/pipelineSlice';
 import { PipelineStatus } from '@/models';
@@ -9,7 +9,7 @@ export const usePipelineOperations = () => {
   const dispatch = useAppDispatch();
 
   const startPipeline = useMutation({
-    mutationFn: (pipelineId: string) => pipelineApi.start(pipelineId),
+    mutationFn: (pipelineJson: BackendPipelineRequest) => pipelineApi.start(pipelineJson),
     onSuccess: () => {
       dispatch(setPipelineStatus(PipelineStatus.RUNNING));
       queryClient.invalidateQueries({ queryKey: ['pipeline-status'] });
@@ -21,7 +21,7 @@ export const usePipelineOperations = () => {
   });
 
   const stopPipeline = useMutation({
-    mutationFn: (pipelineId: string) => pipelineApi.stop(pipelineId),
+    mutationFn: () => pipelineApi.stop(),
     onSuccess: () => {
       dispatch(setPipelineStatus(PipelineStatus.STOPPED));
       queryClient.invalidateQueries({ queryKey: ['pipeline-status'] });
@@ -37,19 +37,4 @@ export const usePipelineOperations = () => {
     isStarting: startPipeline.isPending,
     isStopping: stopPipeline.isPending,
   };
-};
-
-export const usePipelineStatus = (pipelineId: string, enabled: boolean = false) => {
-  return useQuery({
-    queryKey: ['pipeline-status', pipelineId],
-    queryFn: async () => {
-      const response = await pipelineApi.getStatus(pipelineId);
-      if (!response.success || !response.data) {
-        throw new Error(response.error || 'Failed to fetch pipeline status');
-      }
-      return response.data;
-    },
-    enabled: enabled && !!pipelineId,
-    refetchInterval: enabled ? 2000 : false, // Poll every 2 seconds when enabled
-  });
 };

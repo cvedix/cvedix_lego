@@ -131,18 +131,6 @@ public:
 };
 
 
-```
-Thêm node AI 
-Link rtmp stream video
-```
-
-
-``` Cách build ```
-bash:
-mkdir build && cd build
-cmake ..
-make -j4
-
 
 
 
@@ -475,6 +463,73 @@ curl -X POST http://localhost:5555/api/upload \
 ```
 
 ---
+
+### Test với postman
+```postman JSON
+# POST JSON API: 127.0.0.1:8090/api/PipelineNode
+# POST JSON
+{
+    "nodes": [
+        {
+            "type": "cvedix_file_src_node",
+            "config": {
+                "node_name": "file_src",
+                "channel_index": 0,
+                "resize_ratio": 1.0,
+                "cycle": true,
+                "gst_decoder_name": "avdec_h264",
+                "skip_interval": 0
+            }
+        },
+        {
+            "type": "cvedix_yunet_face_detector_node",
+            "config": {
+                "node_name": "face_detector"
+            }
+        },
+        {
+            "type": "cvedix_face_osd_node",
+            "config": {
+                "node_name": "osd"
+            }
+        },
+        {
+            "type": "cvedix_screen_des_node",
+            "config": {
+                "node_name": "screen_des_0",
+                "channel_index": 0,   
+                "osd": true
+            }
+        },
+        {
+            "type": "cvedix_rtmp_des_node",
+            "config": {
+                "node_name": "rtmp_node",
+                "channel_index": 0,
+                "rtmp_url": "rtmp://anhoidong.datacenter.cvedix.com:1935/live/stream",
+                "resolution_width": 960,
+                "resolution_height": 540,
+                "bitrate": 1800,
+                "osd": true,
+                "gst_encoder_name": "x264enc"
+            }
+        }
+    ]
+}
+
+
+# POST VIDEO API: 127.0.0.1:8090/api/PostVideo
+
+**📌 Lưu ý:**
+Định dạng video .mp4
+Short Video
+
+---
+
+
+
+
+
 
 
 

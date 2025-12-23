@@ -8,6 +8,17 @@ interface UIState {
     message: string;
     type: 'success' | 'error' | 'info' | 'warning';
   } | null;
+  // Modal states
+  modals: {
+    videoSelection: {
+      open: boolean;
+      nodeId: string | null;
+    };
+    rtmpStream: {
+      open: boolean;
+      rtmpUrl: string | null;
+    };
+  };
 }
 
 const initialState: UIState = {
@@ -15,6 +26,16 @@ const initialState: UIState = {
   isPanelOpen: true,
   isLoading: false,
   notification: null,
+  modals: {
+    videoSelection: {
+      open: false,
+      nodeId: null,
+    },
+    rtmpStream: {
+      open: false,
+      rtmpUrl: null,
+    },
+  },
 };
 
 const uiSlice = createSlice({
@@ -50,9 +71,41 @@ const uiSlice = createSlice({
     hideNotification: (state) => {
       state.notification = null;
     },
+
+    // Video selection modal
+    openVideoSelectionModal: (state, action: PayloadAction<string>) => {
+      state.modals.videoSelection.open = true;
+      state.modals.videoSelection.nodeId = action.payload;
+    },
+
+    closeVideoSelectionModal: (state) => {
+      state.modals.videoSelection.open = false;
+      state.modals.videoSelection.nodeId = null;
+    },
+
+    // RTMP stream modal
+    openRtmpStreamModal: (state, action: PayloadAction<string>) => {
+      state.modals.rtmpStream.open = true;
+      state.modals.rtmpStream.rtmpUrl = action.payload;
+    },
+
+    closeRtmpStreamModal: (state) => {
+      state.modals.rtmpStream.open = false;
+      state.modals.rtmpStream.rtmpUrl = null;
+    },
   },
 });
 
-export const { selectNode, togglePanel, setLoading, showNotification, hideNotification } = uiSlice.actions;
+export const {
+  selectNode,
+  togglePanel,
+  setLoading,
+  showNotification,
+  hideNotification,
+  openVideoSelectionModal,
+  closeVideoSelectionModal,
+  openRtmpStreamModal,
+  closeRtmpStreamModal,
+} = uiSlice.actions;
 
 export default uiSlice.reducer;

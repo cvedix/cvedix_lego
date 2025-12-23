@@ -1,17 +1,23 @@
 import axios from 'axios';
 
-// Toggle between mock and real API
-export const USE_MOCK_API = true;
-
 export const apiClient = axios.create({
-  baseURL: USE_MOCK_API ? '/mock' : import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080',
-  timeout: 10000,
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8090',
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Request interceptor for auth tokens (future)
+// Separate client for file uploads with longer timeout
+export const uploadClient = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8090',
+  timeout: 300000, // 5 minutes for large video uploads
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});
+
+// Request interceptor for auth tokens
 apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem('auth_token');
   if (token) {
@@ -20,12 +26,20 @@ apiClient.interceptors.request.use((config) => {
   return config;
 });
 
-// Response interceptor for error handling
-apiClient.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.error('API Error:', error);
-    const message = error.response?.data?.message || error.message || 'An error occurred';
-    return Promise.reject(new Error(message));
+uploadClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('auth_token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
-);
+  return config;
+});
+
+// Response interceptor for error handling
+const errorHandler = (error: any) => {
+  console.error('API Error:', error);
+  const message = error.response?.data?.message || error.message || 'An error occurred';
+  return Promise.reject(new Error(message));
+};
+
+apiClient.interceptors.response.use((response) => response, errorHandler);
+uploadClient.interceptors.response.use((response) => response, errorHandler);

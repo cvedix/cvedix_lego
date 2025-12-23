@@ -3,6 +3,20 @@ export enum NodeCategory {
   SOURCE = 'source',
   PROCESSING = 'processing',
   OUTPUT = 'output',
+  HIDDEN = 'hidden', // For auto-generated nodes not shown in UI
+}
+
+// Specific node types for Cvedix SDK
+export enum CvedixNodeType {
+  // Visual nodes
+  FILE_SOURCE = 'cvedix_file_src_node',
+  TRACKER = 'cvedix_tracker_node',
+  RTMP_DESTINATION = 'cvedix_rtmp_des_node',
+
+  // Hidden nodes (auto-generated)
+  FRAME_DECODER = 'cvedix_frame_decoder_node',
+  PREPROCESS = 'cvedix_preprocess_node',
+  ANALYTICS = 'cvedix_analytics_node',
 }
 
 // Base node configuration
@@ -66,4 +80,28 @@ export interface NodeInstance {
     config: NodeConfig;
     schema: NodeSchema;
   };
+  isHidden?: boolean; // Flag for auto-generated hidden nodes
+}
+
+// Source node specific config
+export interface FileSourceConfig extends NodeConfig {
+  node_name: string;
+  channel_index: number;
+  video_name: string;
+  resize_ratio: number;
+  cycle: boolean;
+  gst_decoder_name: string;
+  skip_interval: number;
+}
+
+// RTMP destination config
+export interface RtmpDestinationConfig extends NodeConfig {
+  node_name: string;
+  channel_index: number;
+  rtmp_url: string;
+  resolution_width: number;
+  resolution_height: number;
+  bitrate: number;
+  osd: boolean;
+  gst_encoder_name: string;
 }

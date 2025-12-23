@@ -2,3 +2,4 @@
 export * from './client';
 export * from './nodes.api';
 export * from './pipeline.api';
+export * from './video.api';

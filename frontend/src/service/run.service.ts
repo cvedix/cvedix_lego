@@ -3,6 +3,7 @@ import { usePipelineOperations } from './pipeline.service';
 import { useStreamingStatus } from './stream.service';
 import { useAppSelector } from '@/store';
 import { PipelineStatus } from '@/models';
+import { buildBackendPipeline } from '@/utils/pipelineBuilder';
 
 export const useRunPipeline = () => {
   const pipeline = useAppSelector((state) => state.pipeline.pipeline);
@@ -18,11 +19,12 @@ export const useRunPipeline = () => {
       console.warn('Cannot start empty pipeline');
       return;
     }
-    startPipeline(pipeline.id);
+    const backendPipeline = buildBackendPipeline(pipeline.nodes);
+    startPipeline(backendPipeline);
   };
 
   const handleStop = () => {
-    stopPipeline(pipeline.id);
+    stopPipeline();
   };
 
   return {
