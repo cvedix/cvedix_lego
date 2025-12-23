@@ -11,21 +11,23 @@ export interface BackendPipelineRequest {
   nodes: BackendNodeConfig[];
 }
 
+// Backend response structure for POST /lego/startpipeline
+// Returns: {"status": "started"}
 export interface PipelineStartResponse {
-  success: boolean;
-  message: string;
-  pipeline_id?: string;
+  status: string;
 }
 
+// Backend response structure for POST /lego/stoppipeline
+// Returns: {"status": "stopped"} or {"status": "not running"}
 export interface PipelineStopResponse {
-  success: boolean;
-  message: string;
+  status: string;
 }
 
 export const pipelineApi = {
   /**
    * Start pipeline execution
    * POST /lego/startpipeline
+   * Backend returns: {"status": "started"}
    */
   start: async (pipelineJson: BackendPipelineRequest): Promise<ApiResponse<PipelineStartResponse>> => {
     try {
@@ -35,7 +37,7 @@ export const pipelineApi = {
       );
 
       return {
-        success: true,
+        success: response.data.status === 'started',
         data: response.data,
       };
     } catch (error) {
@@ -49,13 +51,14 @@ export const pipelineApi = {
   /**
    * Stop pipeline execution
    * POST /lego/stoppipeline
+   * Backend returns: {"status": "stopped"} or {"status": "not running"}
    */
   stop: async (): Promise<ApiResponse<PipelineStopResponse>> => {
     try {
       const response = await apiClient.post<PipelineStopResponse>('/lego/stoppipeline');
 
       return {
-        success: true,
+        success: response.data.status === 'stopped' || response.data.status === 'not running',
         data: response.data,
       };
     } catch (error) {

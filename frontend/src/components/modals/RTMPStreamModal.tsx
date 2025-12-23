@@ -31,8 +31,8 @@ export const RTMPStreamModal: React.FC<RTMPStreamModalProps> = ({
     if (!open || !videoRef.current) return;
 
     // Convert RTMP to HLS for browser playback
-    // Note: You may need to configure your backend to provide HLS stream
-    // or use a media server that converts RTMP to HLS
+    // Note: rtmpUrl already includes channel_index suffix (e.g., stream_0)
+    // Example: rtmp://server:1935/live/stream_0 -> http://server:8080/live/stream_0/index.m3u8
     const hlsUrl = rtmpUrl.replace('rtmp://', 'http://').replace(':1935', ':8080') + '/index.m3u8';
 
     // Initialize Video.js player

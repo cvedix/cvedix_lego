@@ -16,10 +16,18 @@ export const buildBackendPipeline = (nodes: NodeInstance[]): BackendPipelineRequ
 
   // Build pipeline in correct order
   if (sourceNode) {
-    // 1. File source node
+    // 1. File source node - ensure all required fields are present
     backendNodes.push({
       type: sourceNode.type,
-      config: sourceNode.data.config,
+      config: {
+        node_name: 'file_src',
+        channel_index: 0,
+        video_name: sourceNode.data.config.video_name || '',
+        resize_ratio: 1.0,
+        cycle: sourceNode.data.config.cycle ?? false,
+        gst_decoder_name: 'avdec_h264',
+        skip_interval: 0,
+      },
     });
 
     // 2. Frame decoder (hidden)
@@ -46,10 +54,19 @@ export const buildBackendPipeline = (nodes: NodeInstance[]): BackendPipelineRequ
   }
 
   if (destinationNode) {
-    // 6. RTMP destination node
+    // 6. RTMP destination node - ensure all required fields are present
     backendNodes.push({
       type: destinationNode.type,
-      config: destinationNode.data.config,
+      config: {
+        node_name: 'rtmp_node',
+        channel_index: 0,
+        rtmp_url: destinationNode.data.config.rtmp_url || 'rtmp://anhoidong.datacenter.cvedix.com:1935/live/stream',
+        resolution_width: destinationNode.data.config.resolution_width ?? 640,
+        resolution_height: destinationNode.data.config.resolution_height ?? 360,
+        bitrate: destinationNode.data.config.bitrate ?? 1000,
+        osd: destinationNode.data.config.osd ?? true,
+        gst_encoder_name: 'x264enc',
+      },
     });
   }
 

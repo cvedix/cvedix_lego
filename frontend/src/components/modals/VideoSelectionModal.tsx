@@ -51,7 +51,12 @@ export const VideoSelectionModal: React.FC<VideoSelectionModalProps> = ({
     onSuccess: (response) => {
       if (response.success && response.data) {
         queryClient.invalidateQueries({ queryKey: ['videos'] });
-        setSelectedVideo(response.data.video_name);
+        // Backend doesn't return filename, so use the uploaded file's name
+        setSelectedVideo(uploadMutation.variables?.name || 'uploaded_video.mp4');
+        setIsUploading(false);
+        setUploadProgress(0);
+      } else {
+        alert(`Upload failed: ${response.error || 'Unknown error'}`);
         setIsUploading(false);
         setUploadProgress(0);
       }
@@ -155,11 +160,11 @@ export const VideoSelectionModal: React.FC<VideoSelectionModalProps> = ({
                 ) : (
                   videoListData?.videos.map((video) => (
                     <button
-                      key={video.video_name}
-                      onClick={() => setSelectedVideo(video.video_name)}
+                      key={video.name}
+                      onClick={() => setSelectedVideo(video.name)}
                       className={cn(
                         'flex items-start gap-3 p-3 rounded-lg border-2 transition-all text-left',
-                        selectedVideo === video.video_name
+                        selectedVideo === video.name
                           ? 'border-primary bg-primary/5'
                           : 'border-gray-200 hover:border-gray-300'
                       )}
@@ -168,15 +173,14 @@ export const VideoSelectionModal: React.FC<VideoSelectionModalProps> = ({
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           <p className="text-sm font-medium truncate">
-                            {video.video_name}
+                            {video.name}
                           </p>
-                          {selectedVideo === video.video_name && (
+                          {selectedVideo === video.name && (
                             <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
                           )}
                         </div>
                         <p className="text-xs text-gray-500">
-                          {(video.file_size / (1024 * 1024)).toFixed(2)} MB
-                          {video.duration && ` • ${video.duration}`}
+                          {(video.size / (1024 * 1024)).toFixed(2)} MB
                         </p>
                       </div>
                     </button>

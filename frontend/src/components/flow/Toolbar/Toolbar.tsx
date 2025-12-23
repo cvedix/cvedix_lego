@@ -68,12 +68,17 @@ export const Toolbar: React.FC = () => {
       if (response.success) {
         dispatch(setPipelineStatus(PipelineStatus.RUNNING));
 
-        // Get RTMP URL from destination node
+        // Get RTMP URL from destination node and construct viewing URL
         const destNode = pipeline.nodes.find((n) => n.type === CvedixNodeType.RTMP_DESTINATION);
-        const rtmpUrl = (destNode?.data.config.rtmp_url as string) || import.meta.env.VITE_DEFAULT_RTMP_URL;
+        const baseRtmpUrl = (destNode?.data.config.rtmp_url as string) || import.meta.env.VITE_DEFAULT_RTMP_URL;
+        const channelIndex = (destNode?.data.config.channel_index as number) ?? 0;
 
-        // Open stream modal
-        dispatch(openRtmpStreamModal(rtmpUrl));
+        // Append channel_index to stream name for viewing
+        // Example: rtmp://server:1935/live/stream + _0 = rtmp://server:1935/live/stream_0
+        const viewingUrl = `${baseRtmpUrl}_${channelIndex}`;
+
+        // Open stream modal with viewing URL
+        dispatch(openRtmpStreamModal(viewingUrl));
       } else {
         dispatch(setPipelineStatus(PipelineStatus.ERROR));
         alert(`Failed to start pipeline: ${response.error}`);
